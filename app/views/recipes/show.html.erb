@@ -1,0 +1,13 @@
+<h1><%=@arecipe.title%></h1>
+<h3>Detalhes</h3>
+<p><%=@arecipe.recipe_type%></p>
+<p><%=@arecipe.cuisine%></p>
+<p><%=@arecipe.difficulty%></p>
+<p><%="#{@arecipe.cook_time} minutos"%></p>
+<h3>Ingredientes</h3>
+<p><%=@arecipe.ingredients%></p>
+<h3>Como Preparar</h3>
+<p><%=@arecipe.method%></p>
+
+<%=link_to 'Voltar', root_path%>
+
