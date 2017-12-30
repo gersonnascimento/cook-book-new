@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    recipe = Recipe.new(title: params[:recipe][:title], recipe_type: params[:recipe][:recipe_type], cuisine_id: params[:recipe][:cuisine_id], difficulty: params[:recipe][:difficulty], cook_time: params[:recipe][:cook_time], ingredients: params[:recipe][:ingredients], method: params[:recipe][:method])
+    recipe = Recipe.new(title: params[:recipe][:title], recipe_type_id: params[:recipe][:recipe_type_id], cuisine_id: params[:recipe][:cuisine_id], difficulty: params[:recipe][:difficulty], cook_time: params[:recipe][:cook_time], ingredients: params[:recipe][:ingredients], method: params[:recipe][:method])
     if recipe.save
       redirect_to recipe_path(recipe.id)
     else 
