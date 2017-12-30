@@ -1,0 +1,13 @@
+<h1><%=@type.name%></h1>
+<%unless @recipes.any?%>
+Nenhuma receita encontrada para este tipo de receitas
+<%else%>
+
+<%@recipes.each do |recipe|%>
+  <h1><%=recipe.title%></h1>
+ <li><%=recipe.recipe_type.name%></li>
+ <li><%=recipe.cuisine.name%></li>
+ <li><%=recipe.difficulty%></li>
+ <li><%="#{recipe.cook_time} minutos"%></li>
+<%end%>
+<%end%>
