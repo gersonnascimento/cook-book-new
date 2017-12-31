@@ -26,4 +26,8 @@ class RecipesController < ApplicationController
     render 'error_recipe'
     end
   end
+  def search 
+    @word = params[:word]
+    @recipes = Recipe.where("title = '#{@word}'")
+  end
 end
