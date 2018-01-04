@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<body>
+<section>
 <%= form_for @recipe do |f| %>
 <%= f.label :title, 'Título'%>   
 <%= f.text_field :title %>
@@ -20,8 +23,8 @@
 <%= f.label :method, 'Como Preparar'%>  
 <%= f.text_field :method%>
 
-
 <%= f.submit "Enviar"%>
 <% end %>
-
-
+</section>
+</body>
+</html>

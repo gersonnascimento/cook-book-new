@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<body>
+	<section>
 <h1><%=@arecipe.title%></h1>
 <h3>Detalhes</h3>
 <p><%=@arecipe.recipe_type.name%></p>
@@ -10,4 +13,6 @@
 <p><%=@arecipe.method%></p>
 <%=link_to 'Editar', edit_recipe_path(@arecipe.id)%>
 <%=link_to 'Voltar', root_path%>
-
+	</section>
+</body>
+</html>
