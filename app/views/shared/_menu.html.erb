@@ -1,0 +1,27 @@
+  <div class="container" style="back: 25px;">
+  <div class="row">
+  <div class="col-sm-3">      <h1>CookBook</h1>
+      <p>Bem-vindo ao maior livro de receitas online</p></div>
+  <div class="col-sm-4"><div style="margin-top: 25px;">
+    <%= form_tag("/search", method: "get") do %>
+    <%= label_tag(:word, "Busca") %>
+    <%= text_field_tag(:word) %>
+    <%= submit_tag("Buscar") %>
+  <% end %>
+  </div>
+  </div>
+  <div class="col-sm-5">
+  <div style="margin-top: 20px;">
+   <ul class="nav nav-pills">
+   <li role="presentation" class="active"><%= link_to 'Início', root_path%></li>
+   <li role="presentation"><%= link_to 'Minhas Receitas', root_path%></li>
+   <li role="presentation"><%= link_to 'Cadastrar Receita', new_recipe_path%></li>
+   <li role="presentation"><%= link_to 'Sair', "#" %></li>
+   </ul>
+  </div>
+  </div>
+</div>
+</div>
+
+
+
