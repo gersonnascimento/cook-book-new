@@ -1,27 +1,23 @@
 <!DOCTYPE html>
   <body>
-  <div class="container" style="back: 25px;">
-  <div class="row">
+  
+      <div class="container-fluid" style="background-color: pink; margin-top: 25px">
+      <div class="row">
   <div class="col-sm-4"></div>
-  <div class="col-sm-4"><h1>CookBook</h1>
+  <div class="col-sm-4">
       <p>Bem-vindo ao maior livro de receitas online</p></div>
       <div class="col-sm-4"></div>
       </div>
-      </div>
-  <section>
-    <h2>Cozinhas</h2>
-    <%@cuisines.each do |cuisine|%>
-      <article>
-       <%=link_to cuisine.name, cuisine_path(cuisine.id)%><br>
-      </article>
-    <%end%>
-  </section>
 
-  <section>
+
+
+  <div class="row">
+
+<%=render 'shared/side_menu'%>
+  <div class="col-sm-4" style="background-color: yellow">
+    
+<div style="margin-left: 50px">
     <h2>Receitas</h2>
-    <%@recipe_types.each do |type|%>
-      <%=link_to type.name, recipe_type_path(type.id)%><br>
-    <%end%>
     <% @recipes.each do |recipe|%>
       <h1><%= link_to recipe.title, recipe_path(recipe.id)%></h1>
       <li><%=recipe.recipe_type.name%></li>
@@ -29,9 +25,24 @@
       <li><%=recipe.difficulty%></li>
       <li><%="#{recipe.cook_time} minutos"%></li>
     <%end%>
-  </section>
+</div>
 
-  <%=link_to 'Enviar uma receita', new_recipe_path%>
+
+  </div>
+  <div class="col-sm-4" style="background-color: gray">
+   
+<div style="margin-left: 50px">
+    <h2>Favoritas</h2> <!-- nada por enquanto-->
+
+</div>
+
+  </div>
+
+  </div>
+
+
+  </div>
+  <%=render 'shared/footer'%>
   </body>
 </html>
 

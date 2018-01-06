@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <body>
+<section>
 <%@recipes.each do |recipe|%>
   <h1>Resultado da busca por: <%="#{@word}"%></h1>
   <h1><%=link_to recipe.title, recipe_path(recipe)%></h1>
@@ -8,6 +9,7 @@
   <li><%=recipe.difficulty%></li>
   <li><%=recipe.cook_time%> minutos</li>
 <%end%>
-
+</section>
+<%=render 'shared/footer'%>
 </body>
 <html>
