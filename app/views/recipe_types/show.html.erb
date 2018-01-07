@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<body>
 <h1><%=@type.name%></h1>
 <%unless @recipes.any?%>
 Nenhuma receita encontrada para este tipo de receitas
@@ -13,5 +11,3 @@ Nenhuma receita encontrada para este tipo de receitas
  <li><%="#{recipe.cook_time} minutos"%></li>
 <%end%>
 <%end%>
-</body>
-</html>

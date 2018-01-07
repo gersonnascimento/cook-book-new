@@ -1,10 +1,10 @@
-<h1><%=@cuisine.name%></h1>
+<!DOCTYPE html>
+<body>
+<h1><%=@type.name%></h1>
 <%unless @recipes.any?%>
-	<section>
-Nenhuma receita encontrada para este tipo de cozinha
-	</section>
+Nenhuma receita encontrada para este tipo de receitas
 <%else%>
-<section>
+
 <%@recipes.each do |recipe|%>
   <h1><%=recipe.title%></h1>
  <li><%=recipe.recipe_type.name%></li>
@@ -12,7 +12,6 @@ Nenhuma receita encontrada para este tipo de cozinha
  <li><%=recipe.difficulty%></li>
  <li><%="#{recipe.cook_time} minutos"%></li>
 <%end%>
-</section>
 <%end%>
-
-
+</body>
+</html>

@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<body>
-
+<%if flash[:error] %>
+<div class="alert alert-danger text-center" role="alert"><%= flash[:error] %></div>
+<% end %>
 <%=render 'shared/form'%>
-<%=render 'shared/footer'%>
-</body>
-</html>
+

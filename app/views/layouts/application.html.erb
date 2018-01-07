@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <head>
+    <style>
+      html, body {height:100%;}
+
+      .geral {
+    min-height:100%;
+    position:relative;
+    width:800px;
+    }
+    
+
+  .footer {
+   width: 101%;
+   margin: -0% -1%;
+   margin-bottom: -1%;
+   }
+
+    </style>
+  </head>
     <title>Social Recipes</title>
     <%= csrf_meta_tags %>
 
@@ -11,5 +31,11 @@
   <body>
   <%=render "shared/menu"%>
     <%= yield %>
+  <footer class="footer">
+    <div class="container text-center">
+      <p>Social Recipes | Copyright 2017</p>
+      <p>Quero ser Dev!</p>
+    </div>
+  </footer>
   </body>
 </html>

@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+
   def show
     @arecipe = Recipe.find(params[:id])
     @cuisines = Cuisine.all
@@ -18,7 +19,8 @@ class RecipesController < ApplicationController
     if recipe.save
       redirect_to recipe_path(recipe.id)
     else 
-      render 'error_recipe'
+      flash[:error] = 'Você deve informar todos os dados da receita'
+      redirect_to new_recipe_path
     end
   end
   def edit
@@ -29,9 +31,10 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(title: params[:recipe][:title], recipe_type_id: params[:recipe][:recipe_type_id], cuisine_id: params[:recipe][:cuisine_id], difficulty: params[:recipe][:difficulty], cook_time: params[:recipe][:cook_time], ingredients: params[:recipe][:ingredients], method: params[:recipe][:method])
-    redirect_to recipe_path(@recipe.id)
+      redirect_to recipe_path(@recipe.id)
     else
-    render 'error_recipe'
+      flash[:error] = 'Você deve informar todos os dados da receita'
+      redirect_to new_recipe_path
     end
   end
   def search 

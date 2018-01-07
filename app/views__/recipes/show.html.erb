@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<body>
   <div class="container-fluid" style="background-color: pink; margin-top: 25px">
   <div class="row">
 
@@ -28,14 +30,14 @@
 
   <div class="row">
 
-  <div class="col-sm-2" style="background-color: orange"></div>
-  <div class="col-sm-5" style="background-color: gray">
+  <div class="col-sm-4" style="background-color: orange"></div>
+  <div class="col-sm-4" style="background-color: gray">
   <section>
   <h3>Ingredientes</h3>
   <p><%=@arecipe.ingredients%></p>
   </section>
   </div>
-  <div class="col-sm-5" style="background-color: yellow"> 
+  <div class="col-sm-4" style="background-color: yellow"> 
   <section>
   <h3>Como Preparar</h3>
   <p><%=@arecipe.method%></p>
@@ -46,3 +48,5 @@
   </div>
 
 	<%=render 'shared/footer'%>
+</body>
+</html>

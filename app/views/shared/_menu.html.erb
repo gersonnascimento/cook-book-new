@@ -1,26 +1,42 @@
-  <div class="container-fluid" style="back: 25px; background-color: #E0FFFF;">
-  <div class="row">
-  <div class="col-sm-3"><h1>CookBook</h1> </div>
-  <div class="col-sm-4"><div style="margin-top: 15px;">
-    <%= form_tag("/search", method: "get") do %>
-    <%= label_tag(:word, "Busca") %>
-    <%= text_field_tag(:word) %>
-    <%= submit_tag("Buscar") %>
-  <% end %>
-  </div>
-  </div>
-  <div class="col-sm-5">
-  <div style="margin-top: 13px;">
-   <ul class="nav nav-pills">
-   <li role="presentation" class="active"><%= link_to 'Início', root_path%></li>
-   <li role="presentation"><%= link_to 'Minhas Receitas', root_path%></li>
-   <li role="presentation"><%= link_to 'Enviar uma receita', new_recipe_path%></li>
-   <li role="presentation"><%= link_to 'Sair', "#" %></li>
-   </ul>
-  </div>
-  </div>
-</div>
-</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h1 style="margin-top: 0px"><a class="navbar-brand" href="#">CookBook</a></h1> <!-- precisa ser h1 para passar no teste-->
+    </div>
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
 
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Início', root_path%></li>
+        <li><%= link_to 'Minhas Receitas', root_path%></li><!--root por enquanto-->
+        <li><%= link_to 'Enviar uma receita', new_recipe_path%></li>
+        <li><%= link_to 'Sair', root_path %></li>  <!-- não tem login ainda-->
 
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+      <div class="container text-center">
+        <p>Bem-vindo ao maior livro de receitas online</p>
+      </div>
+      <div class="row">
+          <%= form_tag("/search", method: "get") do %>
+          <div class="col-sm-3"></div>
+          <div class="col-sm-1"><h4><%= label_tag(:word, "Busca") %></h4></div>
+          <div class="col-sm-4"><%= text_field_tag :word, '', class: "form-control" %></div>
+          <div class="col-sm-3"><%= submit_tag "Buscar", class: "btn btn-default" %></div>
+          <div class="col-sm-1"></div>
+
+      </div>   
+        <% end %>

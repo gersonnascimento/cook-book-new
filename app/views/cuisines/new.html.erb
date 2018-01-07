@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<body>
+<%if flash[:error] %>
+<div class="alert alert-danger text-center" role="alert"><%= flash[:error] %></div>
+<% end %>
+<div>
 <%=form_for @cuisine do |f|%>
 <%=f.label :name, 'Nome'%>
 <%=f.text_field :name%>
 <%=f.submit 'Enviar'%>
 <%end%>
-</body>
-</html>
+</div>
+
+
