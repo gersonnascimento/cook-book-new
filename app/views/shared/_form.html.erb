@@ -1,18 +1,9 @@
 <div class="container">
 <%= form_for @recipe do |f| %>
+
 <div class="form-group">
 <%= f.label :title, 'Título'%>   
 <%= f.text_field :title, class: "form-control" %>
-</div>
-
-<div class="form-group">
-<%= f.label :recipe_type_id, 'Tipo da Receita'%>  
-<%= f.collection_select(:recipe_type_id, RecipeType.all, :id, :name, include_blank:true)%>
-</div>
-
-<div class="form-group">
-<%= f.label :cuisine_id, 'Cozinha'%>  
-<%= f.collection_select(:cuisine_id, Cuisine.all, :id, :name, include_blank:true)%>
 </div>
 
 <div class="form-group">
@@ -35,7 +26,19 @@
 <%= f.text_field :method, class: "form-control"%>
 </div>
 
+<div class="row">
+<div class="form-group col-sm-3">
+<%= f.label :recipe_type_id, 'Tipo da Receita'%>  
+<%= f.collection_select(:recipe_type_id, RecipeType.all, :id, :name, include_blank:true)%>
+</div>
 
-<%= f.submit "Enviar"%>
+<div class="form-group col-sm-3">
+<%= f.label :cuisine_id, 'Cozinha'%>  
+<%= f.collection_select(:cuisine_id, Cuisine.all, :id, :name, include_blank:true)%>
+</div>
+<div class="form-group col-sm-3">
+<%= f.submit "Enviar", class: "btn btn-primary"%>
+</div>
+</div> 
 <% end %>
 </div>
