@@ -1,13 +1,41 @@
-<h1><%=@type.name%></h1>
-<%unless @recipes.any?%>
-Nenhuma receita encontrada para este tipo de receitas
-<%else%>
+  
+  <div style="margin-top: 25px">
+  <div class="row">
+
+<%=render 'shared/side_menu'%>
+  <section class="col-sm-5 text-center">
+    <h1><small>Receitas filtradas por tipo:</small><%=@type.name%></h1>
+    <%unless @recipes.any?%>
+     Nenhuma receita encontrada para este tipo de receitas
+  <%else%>
 
 <%@recipes.each do |recipe|%>
+<section>
   <h1><%=recipe.title%></h1>
  <li><%=recipe.recipe_type.name%></li>
  <li><%=recipe.cuisine.name%></li>
  <li><%=recipe.difficulty%></li>
  <li><%="#{recipe.cook_time} minutos"%></li>
+ </section>
 <%end%>
 <%end%>
+  </section>
+
+
+  <section class="col-sm-5 text-center">
+   <section>
+    <h1>Favoritas</h1> <!-- nada por enquanto-->
+  </section>
+  </section>
+
+
+  </div>
+  </div>
+
+
+
+
+
+
+
+
