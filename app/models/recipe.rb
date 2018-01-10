@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
-  validates :title, :difficulty, :cook_time, :ingredients, :method, presence:true
+  validates :title, :ingredients, :method, presence:true
+  validates :difficulty, inclusion: { in: %w(fácil médio difícil facil medio dificil Fácil Médio Difícil Facil Medio Dificil)}
   belongs_to :cuisine
   belongs_to :recipe_type
 

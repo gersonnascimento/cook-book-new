@@ -6,9 +6,12 @@
 <%if flash[:error] %>
 <div class="alert alert-danger text-center" role="alert"><%= flash[:error] %></div>
 <% end %>
+<% @cuisine.errors.full_messages.each do |msg| %>
+<p><%= msg%><p>
+<%end%>
 <div>
 <%=form_for @cuisine do |f|%>
-<%=f.label :name, 'Nome'%>
+<%=f.label :name%>
 <%=f.text_field :name%>
 <%=f.submit 'Enviar'%>
 <%end%>

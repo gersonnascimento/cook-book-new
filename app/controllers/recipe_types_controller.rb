@@ -7,12 +7,19 @@ class RecipeTypesController < ApplicationController
     @new_type = RecipeType.new
   end
   def create
-    type = RecipeType.new(name: params[:recipe_type][:name])
-    if type.save
-      redirect_to recipe_type_path(type.id)
+    @new_type = RecipeType.new(receive_params)
+    if @new_type.save
+      redirect_to @new_type
     else
       flash[:error] = 'Você deve informar o nome do tipo de receita'
-      redirect_to new_recipe_path
+      render :new
     end
   end
+
+  private
+
+  def receive_params 
+    params.require(:recipe_type).permit(:name)
+  end
+  
 end
