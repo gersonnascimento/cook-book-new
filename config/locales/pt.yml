@@ -1,4 +1,14 @@
 pt-BR:
+  devise:
+    sessions:
+      user:
+        signed_in: 'Seja bem vindo'
+        signed_out: 'Tchau!'
+      admin:
+        signed_in: 'Hello admin!'
+    registrations:
+      user:
+        signed_up: 'Cadastro efetuado com sucesso!'
   activerecord:
     models:
       recipe_type: "Tipo da Receita"
@@ -19,6 +29,9 @@ pt-BR:
         recipe_type_id: 'Tipo da Receita'
         cuisine: Cozinha
         cuisine_id: Cozinha
+      user: 
+        password: 'Senha'
+        password_confirmation: 'Confirmação da senha'
 
     errors:
       messages:

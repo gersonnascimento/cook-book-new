@@ -17,10 +17,11 @@
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
+	<li><%=link_to 'Entrar', new_user_session_path%>
         <li><%= link_to 'Início', root_path%></li>
         <li><%= link_to 'Minhas Receitas', root_path%></li><!--root por enquanto-->
         <li><%= link_to 'Enviar uma receita', new_recipe_path%></li>
-        <li><%= link_to 'Sair', root_path %></li>  <!-- não tem login ainda-->
+        <li><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>  <!-- não tem login ainda-->
 
       </ul>
     </div><!-- /.navbar-collapse -->
