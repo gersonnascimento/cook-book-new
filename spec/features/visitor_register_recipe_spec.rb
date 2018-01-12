@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'Visitor register recipe' do
   scenario 'successfully' do
     #cria os dados necessários
+    create_user
     Cuisine.create(name: 'Arabe')
     RecipeType.create(name: 'Entrada')
     RecipeType.create(name: 'Prato Principal')
@@ -35,6 +36,7 @@ feature 'Visitor register recipe' do
 
   scenario 'and must fill in all fields' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
+    create_user
     Cuisine.create(name: 'Arabe')
     # simula a ação do usuário
     visit root_path
@@ -49,5 +51,13 @@ feature 'Visitor register recipe' do
 
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
+  end
+  
+  def create_user
+    visit new_user_registration_path
+    fill_in 'Email', with: 'teste@teste.com.br'
+    fill_in 'Senha', with: '123456'
+    fill_in 'Confirmação da senha', with: '123456'
+    click_on 'Finalizar Cadastro' 
   end
 end

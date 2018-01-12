@@ -32,4 +32,12 @@ feature 'User login' do
     expect(page).to have_content('Seja bem vindo')
     expect(page).not_to have_content('Acessar') 
   end
+  
+  scenario 'visitant don`t send new recipe' do
+    visit root_path
+    click_on 'Enviar uma receita'
+
+    expect(page).to have_content('Digite seus dados')
+    expect(page).to have_content('Você precisa estar autenticado para executar esta ação.')
+  end  
 end

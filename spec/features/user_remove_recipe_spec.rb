@@ -6,6 +6,7 @@ feature 'User remove recipe' do
     recipe_type = RecipeType.create(name: 'sobremesa')
     recipe = Recipe.create(title: 'Bolo de banana', difficulty: 'facil', cook_time: 5, ingredients: 'banana', method: 'cozinha tudo', cuisine: cuisine, recipe_type: recipe_type)
         recipe2 = Recipe.create(title: 'Bolo de laranja', difficulty: 'facil', cook_time: 5, ingredients: 'banana', method: 'cozinha tudo', cuisine: cuisine, recipe_type: recipe_type)
+    create_user
 
     visit root_path
     click_on recipe.title
@@ -16,6 +17,12 @@ feature 'User remove recipe' do
     expect(page).not_to have_content('Excluir')
     expect(page).to have_content("#{recipe.title} removida com sucesso!")
   end
-  
+  def create_user
+    visit new_user_registration_path
+    fill_in 'Email', with: 'teste@teste.com.br'
+    fill_in 'Senha', with: '123456'
+    fill_in 'Confirmação da senha', with: '123456'
+    click_on 'Finalizar Cadastro' 
+  end
 end
 

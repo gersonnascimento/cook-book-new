@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'User update recipe' do
   scenario 'successfully' do
     #cria os dados necessários
+    create_user
     arabian_cuisine = Cuisine.create(name: 'Arabe')
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
 
@@ -43,6 +44,7 @@ feature 'User update recipe' do
 
   scenario 'and all fields must be filled' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
+    create_user
     arabian_cuisine = Cuisine.create(name: 'Arabe')
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
 
@@ -72,3 +74,10 @@ feature 'User update recipe' do
     expect(page).to have_content('Você deve informar todos os dados da receita')
   end
 end
+  def create_user
+    visit new_user_registration_path
+    fill_in 'Email', with: 'teste@teste.com.br'
+    fill_in 'Senha', with: '123456'
+    fill_in 'Confirmação da senha', with: '123456'
+    click_on 'Finalizar Cadastro' 
+  end

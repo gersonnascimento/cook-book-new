@@ -9,6 +9,9 @@ pt-BR:
     registrations:
       user:
         signed_up: 'Cadastro efetuado com sucesso!'
+    failure:
+      user:
+        unauthenticated: 'Você precisa estar autenticado para executar esta ação.'
   activerecord:
     models:
       recipe_type: "Tipo da Receita"
