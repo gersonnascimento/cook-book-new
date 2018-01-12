@@ -11,9 +11,11 @@ feature 'User remove recipe' do
     click_on recipe.title
     click_on 'Excluir'
 				      
-    expect(page).not_to have_content(recipe.title)
+    expect(page).not_to have_css('h1',text: recipe.title)
     expect(page).to have_css('h1', text: recipe2.title)
     expect(page).not_to have_content('Excluir')
+    expect(page).to have_content("#{recipe.title} removida com sucesso!")
   end
+  
 end
 
