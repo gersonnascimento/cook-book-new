@@ -9,6 +9,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+
+    redirect_to root_path
+  end
+
   def create
     @recipe = Recipe.create(receive_params)
     
