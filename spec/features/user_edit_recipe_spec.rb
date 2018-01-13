@@ -12,10 +12,10 @@ feature 'User update recipe' do
     dessert_type = RecipeType.create(name: 'Sobremesa')
 
     recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
-                          cuisine: arabian_cuisine, difficulty: 'Médio',
+                          cuisine: arabian_cuisine, difficulty: 'facil',
                           cook_time: 50,
                           ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: 1)
 
     # simula a ação do usuário
     visit root_path
@@ -56,7 +56,7 @@ feature 'User update recipe' do
                           cuisine: arabian_cuisine, difficulty: 'Médio',
                           cook_time: 50,
                           ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: 1)
 
     # simula a ação do usuário
     visit root_path

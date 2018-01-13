@@ -17,7 +17,8 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.create(receive_params)
+    @recipe = Recipe.new(receive_params)
+    @recipe.user = current_user
     
     if @recipe.empty
       flash.now[:error] = 'Você deve informar todos os dados da receita'

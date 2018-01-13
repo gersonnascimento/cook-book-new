@@ -3,21 +3,18 @@ require 'rails_helper'
 feature 'Visitor search for recipes' do
   scenario 'from home page' do
     # cria os dados necessários previamente
+    create_user
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     another_recipe_type = RecipeType.create(name: 'Entrada')
 
-    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                           cuisine: cuisine, difficulty: 'Médio',
-                           cook_time: 60,
-                           ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', cook_time: 60, ingredients: 'Farinha, açucar, cenoura', method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: 1)
 
     another_recipe = Recipe.create(title: 'Salada de cenoura', recipe_type: another_recipe_type,
                            cuisine: cuisine, difficulty: 'Facil',
                            cook_time: 60,
                            ingredients: 'Cenoura e legumes',
-                           method: 'Cozinhe a cenoura, misture com os legumes')
+                           method: 'Cozinhe a cenoura, misture com os legumes', user_id: 1)
 
     # simula a ação do usuário
     visit root_path
@@ -36,6 +33,7 @@ feature 'Visitor search for recipes' do
 
   scenario 'and navigate to recipe details' do
     # cria os dados necessários previamente
+    create_user
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
 
@@ -43,7 +41,7 @@ feature 'Visitor search for recipes' do
                            cuisine: cuisine, difficulty: 'Médio',
                            cook_time: 60,
                            ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id:1)
 
     # simula a ação do usuário
     visit root_path
@@ -55,3 +53,11 @@ feature 'Visitor search for recipes' do
     expect(current_path).to eq(recipe_path(recipe))
   end
 end
+
+  def create_user
+    visit new_user_registration_path
+    fill_in 'Email', with: 'teste@teste.com.br'
+    fill_in 'Senha', with: '123456'
+    fill_in 'Confirmação da senha', with: '123456'
+    click_on 'Finalizar Cadastro' 
+  end
