@@ -1,6 +1,13 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy] 
   
+  def favorite
+    @arecipe = Recipe.find(params[:id])
+    favorite = Favorite.create(user: current_user, recipe: @arecipe)
+    flash.now[:notice] = "Receita adicionada aos seus favoritos"
+
+    render :show
+  end
   def show
     @arecipe = Recipe.find(params[:id])
   end

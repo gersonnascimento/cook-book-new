@@ -19,9 +19,19 @@
 
 
   <section class="col-sm-5 text-center">
-   <section>
     <h1>Favoritas</h1> <!-- nada por enquanto-->
-  </section>
+    <% if @frecipes%>
+    <% @frecipes.each do |recipe|%>
+    <section>
+      <h2><%= recipe.title%><small>(<%=recipe.user.email%>)</small></h2>
+      <li><%=recipe.recipe_type.name%></li>
+      <li><%=recipe.cuisine.name %></li>
+      <li><%=recipe.difficulty%></li>
+      <li><%="#{recipe.cook_time} minutos"%></li>
+      </section>
+    <%end%>
+    <%end%>
+    
   </section>
 
 
