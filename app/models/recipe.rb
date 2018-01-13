@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
   belongs_to :cuisine
   belongs_to :recipe_type
   belongs_to :user
+  has_many :favorites
 
   def empty
     title.empty? && difficulty.empty? && cook_time.nil? && ingredients.empty? && method.empty? && cuisine.nil? && recipe_type.nil?
