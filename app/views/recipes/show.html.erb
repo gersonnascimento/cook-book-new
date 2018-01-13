@@ -13,7 +13,7 @@
 <p><%=@arecipe.difficulty%></p>
 <p><%="#{@arecipe.cook_time} minutos"%></p>
 
-<%=link_to 'Editar', edit_recipe_path(@arecipe.id)%>
+<%=link_to 'Editar', edit_recipe_path(@arecipe.id) if current_user == @arecipe.user%>
 <%=link_to 'Voltar', root_path%>
 <%=link_to 'Excluir', recipe_path(@arecipe), method: :delete, data: {confirm: "Tem certeza que deseja excluir #{@arecipe.title}?"} %>
 	</section>

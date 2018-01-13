@@ -72,7 +72,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
-   @recipe = Recipe.find(params[:id]) 
+    @recipe = Recipe.find(params[:id]) 
+    unless current_user == @recipe.user
+      flash[:notice] = 'Você não pode editar esta receita'
+      redirect_to root_path
+    end
   end
   def update
     @recipe = Recipe.find(params[:id])
