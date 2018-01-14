@@ -16,17 +16,12 @@ feature 'User login' do
   end
 
   scenario 'login successfully' do
+    user = create(:user)
+    
     visit root_path
     click_on 'Entrar'
-    click_on 'Fazer cadastro'
-    fill_in 'Email', with: 'teste@teste.com.br'
-    fill_in 'Senha', with: '123456'
-    fill_in 'Confirmação da senha', with: '123456'
-    click_on 'Finalizar Cadastro'
-    click_on 'Sair'
-    click_on 'Entrar'
-    fill_in 'Email', with: 'teste@teste.com.br'
-    fill_in 'Senha', with: '123456'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
     click_on 'Acessar'
 
     expect(page).to have_content('Seja bem vindo')
@@ -40,4 +35,17 @@ feature 'User login' do
     expect(page).to have_content('Digite seus dados')
     expect(page).to have_content('Você precisa estar autenticado para executar esta ação.')
   end  
+  scenario 'and logout' do
+    user = create(:user)
+
+    visit root_path
+    click_on 'Entrar'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
+    click_on 'Acessar'
+    click_on 'Sair'
+
+    expect(page).to have_content('Usuário deslogado.')
+    expect(page).not_to have_content(user.email)
+  end
 end
