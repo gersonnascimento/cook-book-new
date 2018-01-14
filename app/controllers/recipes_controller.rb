@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite] 
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite, :mine] 
   
   def favorite
     @arecipe = Recipe.find(params[:id])
@@ -87,6 +87,7 @@ class RecipesController < ApplicationController
       end
 
     elsif @recipe.save
+      flash[:notice] = 'Receita adicionada com sucesso!'
       redirect_to recipe_path(@recipe.id)
     end
   end

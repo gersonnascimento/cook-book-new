@@ -3,15 +3,18 @@ pt-BR:
     sessions:
       user:
         signed_in: 'Seja bem vindo'
-        signed_out: 'Tchau!'
+        signed_out: 'Usuário deslogado.'
+        already_signed_out: 'Você já está deslogado!'
       admin:
         signed_in: 'Hello admin!'
     registrations:
       user:
         signed_up: 'Cadastro efetuado com sucesso!'
     failure:
+      already_authenticated: 'Você já está autenticado!'
       user:
         unauthenticated: 'Você precisa estar autenticado para executar esta ação.'
+        invalid: 'Usuário ou senha incorretos, ou você não tem acesso ao CookBook.'
   activerecord:
     models:
       recipe_type: "Tipo da Receita"
@@ -33,6 +36,7 @@ pt-BR:
         cuisine: Cozinha
         cuisine_id: Cozinha
       user: 
+        remember_me: 'Computador Privado'
         password: 'Senha'
         password_confirmation: 'Confirmação da senha'
 

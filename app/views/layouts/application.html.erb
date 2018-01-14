@@ -44,8 +44,16 @@
 
   <body>
   <%=render "shared/menu"%>
+  <%if flash[:notice]%>
+  <div class="alert alert-success text-center">
          <p class="notice"><%= notice %></p>
+  </div>
+  <% end %>
+  <%if flash[:alert]%>
+  <div class="alert alert-danger text-center">
          <p class="alert"><%= alert %></p>
+  </div>
+  <% end %>
     <%= yield %>
   <footer class="footer">
     <div class="container text-center">
