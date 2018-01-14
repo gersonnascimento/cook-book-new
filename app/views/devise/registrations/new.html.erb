@@ -1,4 +1,7 @@
-<h2>Crie sua Conta</h2>
+ <div class="row">
+	   <div class="col-sm-4"></div>
+<div class="col-sm-4 text-center form-login">
+ <h2>Crie sua Conta</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -26,4 +29,10 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render "devise/shared/links" %>    
+     
+     </div>
+	       <div class="col-sm-4"></div>
+ </div> 
+
+
