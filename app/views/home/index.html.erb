@@ -7,12 +7,20 @@
     <h1>Receitas</h1>
     <% @recipes.each do |recipe|%>
     <section>
-	    <h1 class="title-recipe"><%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
+
+    <div class="thumbnail">
+      <a href="../images/receita.jpeg">
+        <img src="../images/receita.jpeg" alt="Lights" style="width:100%">
+        <div class="caption">
+      <h1 class="title-recipe"><%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
       <li><%=recipe.recipe_type.name%></li>
       <li><%=recipe.cuisine.name %></li>
       <li><%=recipe.difficulty%></li>
       <li><%="#{recipe.cook_time} minutos"%></li>
-      </section>
+        </div>
+      </a>
+    </div>
+    </section>
     <%end%>
     <%unless @recipes == Recipe.all%>
     <%=link_to 'Todas Receitas', '/recipes/all'%>
