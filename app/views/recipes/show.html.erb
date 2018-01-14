@@ -16,10 +16,12 @@
 <%=link_to 'Editar', edit_recipe_path(@arecipe.id) if current_user == @arecipe.user%>
 <%=link_to 'Voltar', root_path%>
 <%=link_to 'Excluir', recipe_path(@arecipe), method: :delete, data: {confirm: "Tem certeza que deseja excluir #{@arecipe.title}?"} %>
+<%if user_signed_in? %>
 <%if Favorite.where(recipe_id: "#{@arecipe.id}", user_id: current_user.id).any?%>
 Favorita!
 <% else %>
 <%=link_to 'Adicionar aos favoritos', "/favorite/#{@arecipe.id}/"%>
+<%end%>
 <%end%>
 	</section>
 	</div>

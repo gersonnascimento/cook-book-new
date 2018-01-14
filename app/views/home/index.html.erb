@@ -14,6 +14,11 @@
       <li><%="#{recipe.cook_time} minutos"%></li>
       </section>
     <%end%>
+    <%unless @recipes == Recipe.all%>
+    <%=link_to 'Todas Receitas', '/recipes/all'%>
+    <%else%>
+    <%=link_to 'Apenas mais recentes', root_path%>
+    <%end%>
   </section>
 
 

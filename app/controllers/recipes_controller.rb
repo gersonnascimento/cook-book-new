@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy] 
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite] 
   
   def favorite
     @arecipe = Recipe.find(params[:id])
@@ -10,6 +10,10 @@ class RecipesController < ApplicationController
   end
   def show
     @arecipe = Recipe.find(params[:id])
+  end
+  def allrecipes
+    @recipes = Recipe.all
+    render 'home/index'
   end
 
   def new

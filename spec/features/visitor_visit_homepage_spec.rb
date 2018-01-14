@@ -64,6 +64,33 @@ feature 'Visitor visit homepage' do
     expect(page).to have_css('li', text: another_recipe.difficulty)
     expect(page).to have_css('li', text: "#{another_recipe.cook_time} minutos")
   end
+  
+  scenario 'view only 6 last recipes' do 
+    create_user
+    cuisine = Cuisine.create(name: 'Brasileira')
+    recipe_type = RecipeType.create(name: 'Sobremesa')
+    recipe1 = Recipe.create(title: 'Bolo de cenoura1', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
+    recipe2 = Recipe.create(title: 'Bolo de cenoura2', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
+    recipe3 = Recipe.create(title: 'Bolo de cenoura3', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
+    recipe4 = Recipe.create(title: 'Bolo de cenoura4', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
+    recipe5 = Recipe.create(title: 'Bolo de cenoura5', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
+    recipe6 = Recipe.create(title: 'Bolo de cenoura6', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
+    recipe7 = Recipe.create(title: 'Bolo de cenoura7', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
+
+    # simula a ação do usuário
+    visit root_path
+
+    # expectativas do usuário após a ação
+    expect(page).not_to have_css('h1', text: recipe1.title)
+    expect(page).to have_css('h1', text: recipe2.title)
+    expect(page).to have_css('h1', text: recipe3.title)
+    expect(page).to have_css('h1', text: recipe4.title)
+    expect(page).to have_css('h1', text: recipe5.title)
+    expect(page).to have_css('h1', text: recipe6.title)
+    expect(page).to have_css('h1', text: recipe7.title)
+
+
+  end
 
 end
   def create_user

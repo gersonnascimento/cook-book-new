@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-  	@recipes = Recipe.all
+  	@recipes = Recipe.last(6)
 	if user_signed_in?
 	  @favorites = Favorite.where(user_id: current_user.id)
 	  @frecipes = []	

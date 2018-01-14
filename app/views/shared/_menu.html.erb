@@ -33,6 +33,9 @@
       <div class="row text-center busca">
 
         <p>Bem-vindo ao maior livro de receitas online</p>
+	<% if user_signed_in? %>
+    <p><%=current_user.email%></p>
+    	<%end%>
       </div>
       <div class="row busca">
           <%= form_tag("/search", method: "get") do %>
