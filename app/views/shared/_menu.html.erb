@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <h1 style="margin-top: 0px"><a class="navbar-brand" href="#">CookBook</a></h1> <!-- precisa ser h1 para passar no teste-->
+      <h1 style="margin-top: 0px"><a class="navbar-brand" href="<%=root_path%>">CookBook</a></h1> <!-- precisa ser h1 para passar no teste-->
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,7 +19,7 @@
       <ul class="nav navbar-nav navbar-right">
 	<li><%=link_to 'Entrar', new_user_session_path%>
         <li><%= link_to 'Início', root_path%></li>
-        <li><%= link_to 'Minhas Receitas', root_path%></li><!--root por enquanto-->
+        <li><%= link_to 'Minhas Receitas', '/recipes/mine'%></li>
         <li><%= link_to 'Enviar uma receita', new_recipe_path%></li>
         <li><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>  <!-- não tem login ainda-->
 

@@ -19,6 +19,10 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
   end
+  def mine
+    @recipes = Recipe.where(user: current_user)
+    render 'home/index'
+  end
 
   def destroy
     @arecipe = Recipe.find(params[:id])
