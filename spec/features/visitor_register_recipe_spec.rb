@@ -77,6 +77,7 @@ feature 'Visitor register recipe' do
     expect(page).not_to have_content('Título')
   end
   
+end
   def create_user
     visit new_user_registration_path
     fill_in 'Email', with: 'teste@teste.com.br'
@@ -84,4 +85,3 @@ feature 'Visitor register recipe' do
     fill_in 'Confirmação da senha', with: '123456'
     click_on 'Finalizar Cadastro' 
   end
-end

@@ -10,15 +10,8 @@ feature 'Visitor visit homepage' do
 
   scenario 'and view recipe' do
     #cria os dados necessários
-    create_user
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, difficulty: 'Médio', 
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60, user_id:1)
 
+    recipe = create(:recipe)
     # simula a ação do usuário
     visit root_path
 
@@ -32,21 +25,20 @@ feature 'Visitor visit homepage' do
 
   scenario 'and view recipes list' do
     #cria os dados necessários
-    create_user
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, difficulty: 'Médio',
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, title: 'Bolo de cenoura', difficulty: 'Médio',
                           ingredients: 'Cenoura, acucar, oleo e chocolate',
                           method: 'Misturar tudo, bater e assar',
-                          cook_time: 60, user_id:1)
+                          cook_time: 60, cuisine: cuisine, recipe_type: recipe_type)
 
-    another_recipe_type = RecipeType.create(name: 'Prato Principal')
-    another_recipe = Recipe.create(title: 'Feijoada', recipe_type: another_recipe_type,
-                          cuisine: cuisine, difficulty: 'Difícil',
+    user = create(:user, email: 'bonecojosias@locaweb.com.br', password: '123456')
+    another_cuisine = create(:cuisine, name: 'Americana')
+    another_recipe_type = create(:recipe_type, name: 'Prato Principal')
+    another_recipe = create(:recipe, title: 'Feijoada', difficulty: 'Difícil',
                           ingredients: 'Feijao, paio, carne seca',
                           method: 'Cozinhar o feijao e refogar com as carnes já preparadas',
-                          cook_time: 90, user_id:1)
+                          cook_time: 90, cuisine: another_cuisine, recipe_type: another_recipe_type, user: user)
 
     # simula a ação do usuário
     visit root_path
@@ -66,17 +58,17 @@ feature 'Visitor visit homepage' do
   end
   
   scenario 'view only 6 last recipes' do 
-    create_user
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    recipe1 = Recipe.create(title: 'Bolo de cenoura1', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
-    recipe2 = Recipe.create(title: 'Bolo de cenoura2', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
-    recipe3 = Recipe.create(title: 'Bolo de cenoura3', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
-    recipe4 = Recipe.create(title: 'Bolo de cenoura4', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
-    recipe5 = Recipe.create(title: 'Bolo de cenoura5', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
-    recipe6 = Recipe.create(title: 'Bolo de cenoura6', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
-    recipe7 = Recipe.create(title: 'Bolo de cenoura7', recipe_type: recipe_type, cuisine: cuisine, difficulty: 'Médio', ingredients: 'Cenoura, acucar, oleo e chocolate', method: 'Misturar tudo, bater e assar', cook_time: 60, user_id:1)
-
+    user = create(:user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe1 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe2 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe3 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe4 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe5 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe6 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe7 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+	  	
     # simula a ação do usuário
     visit root_path
 
@@ -93,10 +85,3 @@ feature 'Visitor visit homepage' do
   end
 
 end
-  def create_user
-    visit new_user_registration_path
-    fill_in 'Email', with: 'teste@teste.com.br'
-    fill_in 'Senha', with: '123456'
-    fill_in 'Confirmação da senha', with: '123456'
-    click_on 'Finalizar Cadastro' 
-  end

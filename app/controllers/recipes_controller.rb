@@ -21,10 +21,15 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
-    @recipe.destroy
-    flash[:notice] = "#{@recipe.title} removida com sucesso!"
+    @arecipe = Recipe.find(params[:id])
+    if @arecipe.user == current_user
+    @arecipe.destroy
+    flash[:notice] = "#{@arecipe.title} removida com sucesso!"
     redirect_to root_path
+    else
+    flash.now[:notice] = "Você não pode remover esta receite"
+    render :show 
+    end
   end
 
   def create
