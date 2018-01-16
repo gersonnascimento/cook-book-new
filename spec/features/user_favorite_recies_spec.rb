@@ -17,7 +17,7 @@ feature 'user favorite recipes' do
     click_on 'Bolodecenoura'
     click_on 'Adicionar aos favoritos'
 
-    expect(page).to have_content('Favorita!')
+    expect(page).to have_content('Remover dos favoritos')
     expect(page).not_to have_content('Adicionar aos favoritos')
     expect(page).to have_content('Receita adicionada aos seus favoritos')
   end
