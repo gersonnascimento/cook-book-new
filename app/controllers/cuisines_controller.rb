@@ -1,7 +1,5 @@
 class CuisinesController < ApplicationController
   def show
-    @recipe_types = RecipeType.all
-    @cuisines = Cuisine.all
     @cuisine = Cuisine.find(params[:id])
     @recipes = Recipe.where("cuisine_id = #{params[:id]}")
   end

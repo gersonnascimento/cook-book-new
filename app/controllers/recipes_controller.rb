@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
     flash[:notice] = "#{@arecipe.title} removida com sucesso!"
     redirect_to root_path
     else
-    flash.now[:notice] = "Você não pode remover esta receite"
+    flash.now[:notice] = "Você não pode remover esta receita"
     render :show 
     end
   end
