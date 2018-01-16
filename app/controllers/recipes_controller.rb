@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   
   def favorite
     @arecipe = Recipe.find(params[:id])
-    favorite = Favorite.create(user: current_user, recipe: @arecipe)
+    current_user.recipes << @arecipe
     flash.now[:notice] = "Receita adicionada aos seus favoritos"
 
     render :show
