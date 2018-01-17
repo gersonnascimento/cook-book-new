@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :new, :create, :edit, :update, :show, :destroy] do 
     member do
       post 'favorite'
+      delete 'unfavorite'
     end
     collection do
       get 'mine'

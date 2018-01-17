@@ -3,10 +3,9 @@ class RecipesController < ApplicationController
   
   def favorite
     @arecipe = Recipe.find(params[:id])
-    current_user.recipes << @arecipe unless current_user.recipes.include? @arecipe
-    flash.now[:notice] = "Receita adicionada aos seus favoritos"
-
-    render :show
+    current_user.favorite_recipes << @arecipe
+    flash[:notice] = "Receita adicionada aos seus favoritos"
+    redirect_to @arecipe
   end
   def show
     @arecipe = Recipe.find(params[:id])
@@ -111,6 +110,12 @@ class RecipesController < ApplicationController
   def search 
     @word = params[:word]
     @recipes = Recipe.where("title = '#{@word}'")
+  end
+  def unfavorite
+    @recipe = Recipe.find(params[:id])
+    Favorite.find_by(user: current_user, recipe: @recipe).destroy
+    flash[:notice] = "Removida dos seus favoritos!"
+    redirect_to @recipe
   end
 
   private
