@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_recipes, through: :favorites, source: :recipe
   def favorited? recipe
-    self.favorite_recipes.include? recipe
+    false
   end
 end
