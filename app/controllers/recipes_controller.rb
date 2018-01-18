@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite, :mine] 
-  before_action :type_cuisines  
+  before_action :type_cuisines, only: [:create, :show]
 
   def favorite
     @arecipe = Recipe.find(params[:id])

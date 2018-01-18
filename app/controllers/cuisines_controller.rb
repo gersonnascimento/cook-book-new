@@ -1,5 +1,5 @@
 class CuisinesController < ApplicationController
-  before_action :type_cuisines
+  before_action :type_cuisines, only:[:new, :create, :show]
   def show
     @cuisine = Cuisine.find(params[:id])
     @recipes = Recipe.where("cuisine_id = #{params[:id]}")

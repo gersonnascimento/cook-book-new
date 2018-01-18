@@ -20,7 +20,7 @@
           <%if user_signed_in? && current_user.favorited?(@arecipe)%>
             <%=link_to 'Remover dos favoritos', unfavorite_recipe_path(@arecipe), method: :delete%>
           <% else %>
-            <%=link_to 'Adicionar aos favoritos', favorite_recipe_path(@arecipe), method: :post%>
+            <%=link_to 'Adicionar aos favoritos', favorite_recipe_path(@arecipe), method: :post unless !user_signed_in?%>
           <%end%>
         </section>
       </div>
