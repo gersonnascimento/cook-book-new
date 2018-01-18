@@ -1,4 +1,5 @@
 class RecipeTypesController < ApplicationController
+  before_action :type_cuisines
   def show
     @type = RecipeType.find(params[:id])
     @recipes = Recipe.where(recipe_type: @type)
@@ -20,6 +21,10 @@ class RecipeTypesController < ApplicationController
 
   def receive_params 
     params.require(:recipe_type).permit(:name)
+  end
+  def type_cuisines
+    @cuisines = Cuisine.all
+    @recipe_types = RecipeType.all
   end
 
 end

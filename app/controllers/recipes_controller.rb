@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite, :mine] 
+  before_action :type_cuisines  
 
   def favorite
     @arecipe = Recipe.find(params[:id])
@@ -39,62 +40,19 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(receive_params)
     @recipe.user = current_user
 
-    if @recipe.empty
-      flash.now[:error] = 'Você deve informar todos os dados da receita'
+    if @recipe.save
+      flash[:notice] = 'Receita criada com sucesso!'
+      redirect_to @recipe
+    else
+      flash.now[:alert] = 'Não foi possível criar sua receita'
       render :new
-
-    elsif @recipe.title.empty?
-      if @recipe.recipe_type && @recipe.cuisine && @recipe.difficulty && @recipe.cook_time && @recipe.ingredients && @recipe.method
-        flash.now[:error] = 'Você deve informar o título da receita.'
-        render :new
-      end
-
-    elsif @recipe.recipe_type.nil?
-      if @recipe.title && @recipe.cuisine && @recipe.difficulty && @recipe.cook_time && @recipe.ingredients && @recipe.method
-        flash.now[:error] = 'Você deve informar o tipo de receita.'
-        render:new
-      end
-
-    elsif @recipe.cuisine.nil?
-      if @recipe.title && @recipe.recipe_type && @recipe.difficulty && @recipe.cook_time && @recipe.ingredients && @recipe.method
-        flash.now[:error] = 'Você deve informar a cozinha.'
-        render:new
-      end
-
-    elsif @recipe.difficulty.empty?
-      if @recipe.title && @recipe.recipe_type && @recipe.cuisine && @recipe.cook_time && @recipe.ingredients && @recipe.method
-        flash.now[:error] = 'Você deve informar a dificuldade da receita.'
-        render:new
-      end
-
-    elsif @recipe.cook_time.nil?
-      if @recipe.title && @recipe.recipe_type && @recipe.cuisine && @recipe.difficulty && @recipe.ingredients && @recipe.method
-        flash.now[:error] = 'Você deve informar o tempo.'
-        render:new
-      end
-
-    elsif @recipe.ingredients.empty?
-      if @recipe.title && @recipe.recipe_type && @recipe.cuisine && @recipe.difficulty && @recipe.cook_time && @recipe.method
-        flash.now[:error] = 'Você deve informar os ingredientes.'
-        render:new
-      end
-
-    elsif @recipe.method.empty?
-      if @recipe.title && @recipe.recipe_type && @recipe.cuisine && @recipe.difficulty && @recipe.cook_time && @recipe.ingredients
-        flash.now[:error] = 'Você deve informar como preparar a receita.'
-        render:new
-      end
-
-    elsif @recipe.save
-      flash[:notice] = 'Receita adicionada com sucesso!'
-      redirect_to recipe_path(@recipe.id)
     end
   end
-
   def edit
     @recipe = Recipe.find(params[:id]) 
     unless @recipe.editable_by? current_user
       flash[:notice] = 'Você não pode editar esta receita'
+      type_cuisines
       redirect_to root_path
     end
   end
@@ -123,8 +81,9 @@ class RecipesController < ApplicationController
   def receive_params
     params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :difficulty, :cook_time, :ingredients, :method)
   end
+  def type_cuisines
+    @recipe_types = RecipeType.all
+    @cuisines = Cuisine.all
+  end
 end
-
-
-
 
