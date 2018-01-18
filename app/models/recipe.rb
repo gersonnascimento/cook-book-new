@@ -9,4 +9,8 @@ class Recipe < ApplicationRecord
   def empty
     title.empty? && difficulty.empty? && cook_time.nil? && ingredients.empty? && method.empty? && cuisine.nil? && recipe_type.nil?
   end
+  def editable_by? user
+    self.user == user
+  end
+
 end

@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
 
   def destroy
     @arecipe = Recipe.find(params[:id])
-    if @arecipe.user == current_user
+    if @arecipe.editable_by? current_user
     @arecipe.destroy
     flash[:notice] = "#{@arecipe.title} removida com sucesso!"
     redirect_to root_path
@@ -93,7 +93,7 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id]) 
-    unless current_user == @recipe.user
+    unless @recipe.editable_by? current_user
       flash[:notice] = 'Você não pode editar esta receita'
       redirect_to root_path
     end

@@ -17,6 +17,17 @@ feature 'User remove recipe' do
     expect(page).not_to have_content('Excluir')
     expect(page).to have_content("#{recipe.title} removida com sucesso!")
   end
+  scenario 'but only owner can do it' do
+    user = create(:user)
+    user2 = create(:user, email:'other@other.com')
+    recipe = create(:recipe, user: user)
+
+    login_as user2
+    visit recipe_path(recipe)
+
+    expect(page).not_to have_link('Excluir')
+    expect(page).to have_css('h1', text: recipe.title)
+  end
   def create_user
     visit new_user_registration_path
     fill_in 'Email', with: 'teste@teste.com.br'
