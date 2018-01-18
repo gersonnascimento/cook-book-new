@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite, :mine] 
-  
+
   def favorite
     @arecipe = Recipe.find(params[:id])
     current_user.favorite_recipes << @arecipe
@@ -26,19 +26,19 @@ class RecipesController < ApplicationController
   def destroy
     @arecipe = Recipe.find(params[:id])
     if @arecipe.editable_by? current_user
-    @arecipe.destroy
-    flash[:notice] = "#{@arecipe.title} removida com sucesso!"
-    redirect_to root_path
+      @arecipe.destroy
+      flash[:notice] = "#{@arecipe.title} removida com sucesso!"
+      redirect_to root_path
     else
-    flash.now[:notice] = "Você não pode remover esta receita"
-    render :show 
+      flash.now[:notice] = "Você não pode remover esta receita"
+      render :show 
     end
   end
 
   def create
     @recipe = Recipe.new(receive_params)
     @recipe.user = current_user
-    
+
     if @recipe.empty
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :new

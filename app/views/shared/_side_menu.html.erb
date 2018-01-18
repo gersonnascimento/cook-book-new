@@ -1,24 +1,24 @@
-  <%
+<%
     @recipe_types = RecipeType.all
-    @cuisines = Cuisine.all
+@cuisines = Cuisine.all
   %>
-  <section class="col-sm-2">
-   <div class="text-center">
+<section class="col-sm-2">
+  <div class="text-center">
 
     <h2>Tipo</h2>
     <%@recipe_types.each do |type|%>
       <%=link_to type.name, recipe_type_path(type.id)%><br>
     <%end%>
-    
 
-    
+
+
     <h2>Cozinha</h2>
     <%@cuisines.each do |cuisine|%>
       <article>
-       <%=link_to cuisine.name, cuisine_path(cuisine.id)%><br>
+        <%=link_to cuisine.name, cuisine_path(cuisine.id)%><br>
       </article>
     <%end%>
 
-    </div>
+  </div>
 
-  </section>
+</section>

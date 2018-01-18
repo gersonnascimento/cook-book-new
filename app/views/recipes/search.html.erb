@@ -1,31 +1,10 @@
-
-  <head>
-    <style type="text/css">
-      html, body {height:100%;}
-
-      .geral {
-    min-height:100%;
-    position:relative;
-    width:800px;
-    }
-    
-
-    .footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
-   }
-
-    </style>
-  </head>
-
 <section class="geral">
-<%@recipes.each do |recipe|%>
-  <h1>Resultado da busca por: <%="#{@word}"%></h1>
-  <h1><%=link_to recipe.title, recipe_path(recipe)%></h1>
-  <li><%=recipe.recipe_type.name%></li>
-  <li><%=recipe.cuisine.name%></li>
-  <li><%=recipe.difficulty%></li>
-  <li><%=recipe.cook_time%> minutos</li>
-<%end%>
+  <%@recipes.each do |recipe|%>
+    <h1>Resultado da busca por: <%="#{@word}"%></h1>
+    <h1><%=link_to recipe.title, recipe_path(recipe)%></h1>
+    <li><%=recipe.recipe_type.name%></li>
+    <li><%=recipe.cuisine.name%></li>
+    <li><%=recipe.difficulty%></li>
+    <li><%=recipe.cook_time%> minutos</li>
+  <%end%>
 </section>

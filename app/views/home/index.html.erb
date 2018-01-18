@@ -1,59 +1,56 @@
-  
-  <div class="row fundo-cor">
-  <%=render 'shared/side_menu'%>
-  
-  <section class="col-sm-4 text-center">
-    <h1>Receitas</h1>
-    <% @recipes.each do |recipe|%>
-    <section>
+<div class="row fundo-cor">
+<%=render 'shared/side_menu'%>
 
-    <div class="thumbnail">
-      <a href="../images/receita3.jpg">
-        <img src="../images/receita3.jpg" alt="recipe picture"%>
-        <div class="caption">
-		<h1 class="title-recipe"><%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
-      <li><%=recipe.recipe_type.name%></li>
-      <li><%=recipe.cuisine.name %></li>
-      <li><%=recipe.difficulty%></li>
-      <li><%="#{recipe.cook_time} minutos"%></li>
-        </div>
-      </a>
-    </div>
-    </section>
-    <%end%>
-    <%unless @recipes == Recipe.all%>
-    <%=link_to 'Todas Receitas', allrecipes_recipes_path%>
-    <%else%>
-    <%=link_to 'Apenas mais recentes', root_path%>
-    <%end%>
-  </section>
-  <div class="col-sm-1">
+<section class="col-sm-4 text-center">
+<h1>Receitas</h1>
+<% @recipes.each do |recipe|%>
+  <section>
+
+  <div class="thumbnail">
+  <a href="../images/receita3.jpg">
+  <img src="../images/receita3.jpg" alt="recipe picture"%>
+<div class="caption">
+  <h1 class="title-recipe"><%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
+  <li><%=recipe.recipe_type.name%></li>
+  <li><%=recipe.cuisine.name %></li>
+  <li><%=recipe.difficulty%></li>
+  <li><%="#{recipe.cook_time} minutos"%></li>
+</div>
+  </a>
   </div>
+  </section>
+<%end%>
+<%unless @recipes == Recipe.all%>
+  <%=link_to 'Todas Receitas', allrecipes_recipes_path%>
+<%else%>
+  <%=link_to 'Apenas mais recentes', root_path%>
+<%end%>
+</section>
+<div class="col-sm-1">
+</div>
 
-
-  <section class="col-sm-4 text-center">
-    <h1>Favoritas</h1> <!-- nada por enquanto-->
-    <% if @favorites%>
+<section class="col-sm-4 text-center">
+  <h1>Favoritas</h1> <!-- nada por enquanto-->
+  <% if @favorites%>
     <% @favorites.each do |recipe|%>
-    <section>
+      <section>
 
-    <div class="thumbnail">
-      <a href="../images/receita3.jpg">
-        <img src="../images/receita3.jpg" alt="recipe picture">
-        <div class="caption">
-      <h2 class="title-recipe"><%= recipe.title%><small>(<%=recipe.user.email%>)</small></h2>
-      <li><%=recipe.recipe_type.name%></li>
-      <li><%=recipe.cuisine.name %></li>
-      <li><%=recipe.difficulty%></li>
-      <li><%="#{recipe.cook_time} minutos"%></li>
+        <div class="thumbnail">
+          <a href="../images/receita3.jpg">
+            <img src="../images/receita3.jpg" alt="recipe picture">
+            <div class="caption">
+              <h2 class="title-recipe"><%= recipe.title%><small>(<%=recipe.user.email%>)</small></h2>
+              <li><%=recipe.recipe_type.name%></li>
+              <li><%=recipe.cuisine.name %></li>
+              <li><%=recipe.difficulty%></li>
+              <li><%="#{recipe.cook_time} minutos"%></li>
+            </div>
+          </a>
         </div>
-      </a>
-    </div>
-    </section>
+      </section>
     <%end%>
-    <%end%>
-    
-  </section>
+  <%end%>
 
+</section>
 
-  </div>
+</div>

@@ -9,7 +9,7 @@ class CuisinesController < ApplicationController
   def create
     @cuisine = Cuisine.new(receive_params)
     if @cuisine.save
-    redirect_to @cuisine
+      redirect_to @cuisine
     else
       flash[:error] = 'Você deve informar o nome da cozinha'
       render :new

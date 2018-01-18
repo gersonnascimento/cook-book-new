@@ -3,51 +3,51 @@
   <head>
 
     <head>
-    <style>
-      html, body {height:100%;}
+      <style>
+html, body {height:100%;}
 
-      .geral {
-    min-height:100%;
-    position:relative;
-    width:800px;
-    }
-    
+.geral {
+  min-height:100%;
+  position:relative;
+  width:800px;
+}
+
 
   .footer {
-   width: 101%;
-   margin: -0% -1%;
-   margin-bottom: -1%;
-   color: white;
-    font-weight: bold;
-    background-color: #00BFFF;
-    margin-top: 5px;
-   }
-
-   .formrecipe{
-    margin-top: 10px;
-   }
-
-   .busca{
+    width: 101%;
+    margin: -0% -1%;
+    margin-bottom: -1%;
     color: white;
     font-weight: bold;
     background-color: #00BFFF;
-   }
-   .form-login{
-     background-color: #E6E6FA;
-     border-radius: 10px;
-    }
-   .title-recipe{
-    font-size: medium
-   }
+    margin-top: 5px;
+  }
 
-   .fundo-cor{
-   background-color: #F0F8FF;
-   }
-   body{
-   background-color: #F0F8FF;
-   }
-    </style>
-  </head>
+  .formrecipe{
+    margin-top: 10px;
+  }
+
+  .busca{
+    color: white;
+    font-weight: bold;
+    background-color: #00BFFF;
+  }
+  .form-login{
+    background-color: #E6E6FA;
+    border-radius: 10px;
+  }
+  .title-recipe{
+    font-size: medium
+  }
+
+  .fundo-cor{
+    background-color: #F0F8FF;
+  }
+  body{
+    background-color: #F0F8FF;
+  }
+      </style>
+    </head>
     <title>Social Recipes</title>
     <%= csrf_meta_tags %>
 
@@ -56,23 +56,23 @@
   </head>
 
   <body>
-  <%=render "shared/menu"%>
-  <%if flash[:notice]%>
-  <div class="alert alert-success text-center">
-         <p class="notice"><%= notice %></p>
-  </div>
-  <% end %>
-  <%if flash[:alert]%>
-  <div class="alert alert-danger text-center">
-         <p class="alert"><%= alert %></p>
-  </div>
-  <% end %>
+    <%=render "shared/menu"%>
+    <%if flash[:notice]%>
+      <div class="alert alert-success text-center">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <%if flash[:alert]%>
+      <div class="alert alert-danger text-center">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
     <%= yield %>
-  <footer class="footer">
-    <div class="container text-center">
-      <p>Social Recipes | Copyright 2017</p>
-      <p>Quero ser Dev!</p>
-    </div>
-  </footer>
+    <footer class="footer">
+      <div class="container text-center">
+        <p>Social Recipes | Copyright 2017</p>
+        <p>Quero ser Dev!</p>
+      </div>
+    </footer>
   </body>
 </html>

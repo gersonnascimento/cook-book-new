@@ -1,14 +1,14 @@
 <%if flash[:error] %>
-<div class="alert alert-danger text-center" role="alert"><%= flash[:error] %></div>
+  <div class="alert alert-danger text-center" role="alert"><%= flash[:error] %></div>
 <% end %>
 <div>
-<% @new_type.errors.full_messages.each do |msg| %>
-<p><%= msg%><p>
-<%end%>
-<%=form_for @new_type do |f|%>
-<%=f.label :name%>
-<%=f.text_field :name%>
-<%=f.submit 'Enviar'%>
-<%end%>
+  <% @new_type.errors.full_messages.each do |msg| %>
+    <p><%= msg%><p>
+  <%end%>
+  <%=form_for @new_type do |f|%>
+    <%=f.label :name%>
+    <%=f.text_field :name%>
+    <%=f.submit 'Enviar'%>
+  <%end%>
 </div>
 
