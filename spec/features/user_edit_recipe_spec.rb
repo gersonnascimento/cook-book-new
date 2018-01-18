@@ -12,10 +12,10 @@ feature 'User update recipe' do
     dessert_type = RecipeType.create(name: 'Sobremesa')
 
     recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
-                          cuisine: arabian_cuisine, difficulty: 'facil',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: 1)
+                           cuisine: arabian_cuisine, difficulty: 'facil',
+                           cook_time: 50,
+                           ingredients: 'Farinha, açucar, cenoura',
+                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: 1)
 
     # simula a ação do usuário
     visit root_path
@@ -53,10 +53,10 @@ feature 'User update recipe' do
     dessert_type = RecipeType.create(name: 'Sobremesa')
 
     recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
-                          cuisine: arabian_cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: 1)
+                           cuisine: arabian_cuisine, difficulty: 'Médio',
+                           cook_time: 50,
+                           ingredients: 'Farinha, açucar, cenoura',
+                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: 1)
 
     # simula a ação do usuário
     visit root_path
@@ -74,10 +74,10 @@ feature 'User update recipe' do
     expect(page).to have_content('Você deve informar todos os dados da receita')
   end
 end
-  def create_user
-    visit new_user_registration_path
-    fill_in 'Email', with: 'teste@teste.com.br'
-    fill_in 'Senha', with: '123456'
-    fill_in 'Confirmação da senha', with: '123456'
-    click_on 'Finalizar Cadastro' 
-  end
+def create_user
+  visit new_user_registration_path
+  fill_in 'Email', with: 'teste@teste.com.br'
+  fill_in 'Senha', with: '123456'
+  fill_in 'Confirmação da senha', with: '123456'
+  click_on 'Finalizar Cadastro' 
+end

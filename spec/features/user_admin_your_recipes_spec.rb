@@ -25,18 +25,18 @@ feature 'user admin your recipes' do
     expect(page).not_to have_content('Ingredientes')
   end
 end
-  def create_user
-    visit new_user_registration_path
-    fill_in 'Email', with: 'teste@teste.com.br'
-    fill_in 'Senha', with: '123456'
-    fill_in 'Confirmação da senha', with: '123456'
-    click_on 'Finalizar Cadastro' 
-  end
-  def create_another_user
-    click_on 'Sair'
-    visit new_user_registration_path
-    fill_in 'Email', with: 'teste2@teste2.com.br'
-    fill_in 'Senha', with: '123456'
-    fill_in 'Confirmação da senha', with: '123456'
-    click_on 'Finalizar Cadastro' 
-  end
+def create_user
+  visit new_user_registration_path
+  fill_in 'Email', with: 'teste@teste.com.br'
+  fill_in 'Senha', with: '123456'
+  fill_in 'Confirmação da senha', with: '123456'
+  click_on 'Finalizar Cadastro' 
+end
+def create_another_user
+  click_on 'Sair'
+  visit new_user_registration_path
+  fill_in 'Email', with: 'teste2@teste2.com.br'
+  fill_in 'Senha', with: '123456'
+  fill_in 'Confirmação da senha', with: '123456'
+  click_on 'Finalizar Cadastro' 
+end

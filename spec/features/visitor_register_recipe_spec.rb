@@ -53,7 +53,7 @@ feature 'Visitor register recipe' do
     expect(page).to have_content('Você deve informar todos os dados da receita')
   end
   scenario 'recipe have author' do
-    
+
     create_user
     Cuisine.create(name: 'Arabe')
     RecipeType.create(name: 'Entrada')
@@ -76,12 +76,12 @@ feature 'Visitor register recipe' do
     expect(page).to have_content('(teste@teste.com.br)')
     expect(page).not_to have_content('Título')
   end
-  
+
 end
-  def create_user
-    visit new_user_registration_path
-    fill_in 'Email', with: 'teste@teste.com.br'
-    fill_in 'Senha', with: '123456'
-    fill_in 'Confirmação da senha', with: '123456'
-    click_on 'Finalizar Cadastro' 
-  end
+def create_user
+  visit new_user_registration_path
+  fill_in 'Email', with: 'teste@teste.com.br'
+  fill_in 'Senha', with: '123456'
+  fill_in 'Confirmação da senha', with: '123456'
+  click_on 'Finalizar Cadastro' 
+end

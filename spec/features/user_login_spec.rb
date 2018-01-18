@@ -9,15 +9,15 @@ feature 'User login' do
     fill_in 'Senha', with: '123456'
     fill_in 'Confirmação da senha', with: '123456'
     click_on 'Finalizar Cadastro'
-   
-    
+
+
     expect(page).to have_content('Cadastro efetuado com sucesso!')
     expect(page).not_to have_content('Finalizar Cadastro')
   end
 
   scenario 'login successfully' do
     user = create(:user)
-    
+
     visit root_path
     click_on 'Entrar'
     fill_in 'Email', with: user.email
@@ -27,7 +27,7 @@ feature 'User login' do
     expect(page).to have_content('Seja bem vindo')
     expect(page).not_to have_content('Acessar') 
   end
-  
+
   scenario 'visitant don`t send new recipe' do
     visit root_path
     click_on 'Enviar uma receita'
