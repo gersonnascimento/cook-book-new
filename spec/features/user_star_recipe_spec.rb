@@ -10,6 +10,7 @@ feature 'User star recipe' do
     click_on 'Star'
 
     expect(page).to have_content('Unstar')
+    expect(page).to have_css("img[src*='star.png']")
     expect(page).to have_content('Receita marcada com sucesso')
   end
 
@@ -22,7 +23,7 @@ feature 'User star recipe' do
     click_on 'Star'
     visit root_path
 
-    expect(page).to have_content('(stared)')
+    expect(page).to have_css("img[src*='star.png']")
     expect(page).not_to have_link('Star')
   end
 

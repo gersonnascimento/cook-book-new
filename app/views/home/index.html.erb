@@ -10,7 +10,11 @@
   <a href="../images/receita3.jpg">
   <img src="../images/receita3.jpg" alt="recipe picture"%>
 <div class="caption">
-  <h1 class="title-recipe"><%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
+  <h1 class="title-recipe"> 
+    <%if recipe.star%>
+          <img src="../images/star.png" alt="recipe picture"%>
+    <%end%>
+    <%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
   <%if recipe.star%>
     (stared)
   <%end%>
