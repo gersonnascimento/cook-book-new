@@ -2,6 +2,16 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite, :mine] 
   before_action :type_cuisines, only: [:create, :show]
 
+  def star
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(star: true)
+    flash[:notice] = 'Receita marcada com sucesso!'
+    redirect_to @recipe
+    else
+    flash[:alert] = 'Não foi possível marcar!'
+    redirect_to @recipe
+    end
+  end
   def share
     @recipe = Recipe.find(params[:id])
     email = params[:email]

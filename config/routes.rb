@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post 'favorite'
       delete 'unfavorite'
       post 'share'
+      post 'star'
     end
     collection do
       get 'mine'

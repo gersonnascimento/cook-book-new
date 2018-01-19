@@ -22,6 +22,11 @@
           <% else %>
             <%=link_to 'Adicionar aos favoritos', favorite_recipe_path(@arecipe), method: :post unless !user_signed_in?%>
           <%end%>
+          <% if @arecipe.star%>
+          <%= link_to 'Unstar', star_recipe_path, method: :delete%>
+          <%else%>
+          <%= link_to 'Star', star_recipe_path, method: :post%>
+        <%end%>
         </section>
       </div>
     </div>
