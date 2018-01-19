@@ -22,11 +22,12 @@
           <% else %>
             <%=link_to 'Adicionar aos favoritos', favorite_recipe_path(@arecipe), method: :post unless !user_signed_in?%>
           <%end%>
-          <% if @arecipe.star%>
-          <%= link_to 'Unstar', star_recipe_path, method: :delete%>
+          <% if user_signed_in? && @arecipe.star%>
+            <%= link_to 'Unstar', star_recipe_path, method: :delete unless !user_signed_in?%>
+            (starred)
           <%else%>
-          <%= link_to 'Star', star_recipe_path, method: :post%>
-        <%end%>
+            <%= link_to 'Star', star_recipe_path, method: :post unless !user_signed_in?%>
+          <%end%>
         </section>
       </div>
     </div>
@@ -40,12 +41,12 @@
   <div>
     <h1>Compartilhar Receita</h1>
     <%= form_tag(share_recipe_path, method: :post) do %>
-    <%= label_tag :email, 'E-mail' %>
-    <%= text_field_tag :email %>
-    <%= label_tag :message, 'Mensagem' %>
-    <%= text_area_tag :message %>
-    <%= submit_tag 'Compartilhar'%>
-  <%end%>
+      <%= label_tag :email, 'E-mail' %>
+      <%= text_field_tag :email %>
+      <%= label_tag :message, 'Mensagem' %>
+      <%= text_area_tag :message %>
+      <%= submit_tag 'Compartilhar'%>
+    <%end%>
   </div> 
 
   <div class="row">
