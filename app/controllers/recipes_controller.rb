@@ -2,6 +2,15 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite, :mine] 
   before_action :type_cuisines, only: [:create, :show]
 
+  def share
+    @recipe = Recipe.find(params[:id])
+    email = params[:email]
+    msg = params[:message]
+
+    RecipesMailer.share(email,msg, @recipe.id).deliver_now
+    flash[:notice] = 'Enviada com sucesso'
+    redirect_to @recipe
+  end
   def favorite
     @arecipe = Recipe.find(params[:id])
     current_user.favorite_recipes << @arecipe

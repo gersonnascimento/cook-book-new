@@ -32,6 +32,16 @@
       </div>
     </div>
   </div>
+  <div>
+    <h1>Compartilhar Receita</h1>
+    <%= form_tag(share_recipe_path, method: :post) do %>
+    <%= label_tag :email, 'E-mail' %>
+    <%= text_field_tag :email %>
+    <%= label_tag :message, 'Mensagem' %>
+    <%= text_area_tag :message %>
+    <%= submit_tag 'Compartilhar'%>
+  <%end%>
+  </div> 
 
   <div class="row">
 
