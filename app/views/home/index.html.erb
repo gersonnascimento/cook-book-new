@@ -1,7 +1,7 @@
 <div class="row fundo-cor">
 <%=render 'shared/side_menu'%>
 
-<section class="col-sm-4 text-center">
+<section class="col-sm-2 text-center">
 <h1>Receitas</h1>
 <% @recipes.each do |recipe|%>
   <section>
@@ -29,7 +29,7 @@
 <div class="col-sm-1">
 </div>
 
-<section class="col-sm-4 text-center">
+<section class="col-sm-2 text-center">
   <h1>Favoritas</h1> <!-- nada por enquanto-->
   <% if @favorites%>
     <% @favorites.each do |recipe|%>
@@ -44,6 +44,31 @@
               <li><%=recipe.cuisine.name %></li>
               <li><%=recipe.difficulty%></li>
               <li><%="#{recipe.cook_time} minutos"%></li>
+            </div>
+          </a>
+        </div>
+      </section>
+    <%end%>
+  <%end%>
+
+</section>
+<div class="col-sm-1">
+</div>
+<section class="col-sm-3 text-center" style="background-color: orange">
+  <h1>+Favoritadas</h1> <!-- nada por enquanto-->
+  <% if @morefavoriteds%>
+    <% @morefavoriteds.each do |vetor|%>
+      <section>
+
+        <div class="thumbnail">
+          <a href="../images/receita3.jpg">
+            <img src="../images/receita3.jpg" alt="recipe picture">
+            <div class="caption">
+              <h3 class="title-recipe"><%= vetor.first.title%><small>(<%=vetor.first.user.email%>)</small></h3>
+              <li><%=vetor.first.recipe_type.name%></li>
+              <li><%=vetor.first.cuisine.name %></li>
+              <li><%=vetor.first.difficulty%></li>
+              <li><%="#{vetor.first.cook_time} minutos"%></li>
             </div>
           </a>
         </div>
