@@ -27,7 +27,7 @@
     <%=link_to 'Adicionar aos favoritos', favorite_recipe_path(@arecipe), method: :post unless !user_signed_in?%>
   <%end%>
   <% if user_signed_in? && @arecipe.star%>
-    <%= link_to 'Unstar', star_recipe_path, method: :delete unless !user_signed_in?%>
+    <%= link_to 'Unstar', unstar_recipe_path, method: :delete unless !user_signed_in?%>
     (starred)
   <%else%>
     <%= link_to 'Star', star_recipe_path, method: :post unless !user_signed_in?%>

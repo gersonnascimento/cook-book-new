@@ -27,11 +27,24 @@ feature 'User star recipe' do
     expect(page).not_to have_link('Star')
   end
 
-  scenario 'only logge users can star recipes' do
+  scenario 'only logged users can star recipes' do
     recipe = create(:recipe)
 
     visit recipe_path(recipe)
 
     expect(page).not_to have_link 'Star'
+  end
+  scenario 'user unstar recipe' do
+    user = create(:user)
+    recipe = create(:recipe, user: user)
+    
+    login_as user
+    visit recipe_path(recipe)
+    click_on  'Star'
+    click_on 'Unstar'
+
+    expect(page).to have_content('Marcação removida com sucesso!')
+    expect(page).to have_link('Star')
+    expect(page).not_to have_link('Unstar')
   end
 end

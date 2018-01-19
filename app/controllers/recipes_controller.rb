@@ -12,6 +12,16 @@ class RecipesController < ApplicationController
     redirect_to @recipe
     end
   end
+  def unstar
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(star: false)
+      flash[:notice] = 'Marcação removida com sucesso!'
+      redirect_to @recipe
+    else
+      flash[:notice] = 'Não foi possível remover a marcação'
+      recirect_to @recipe
+    end
+  end
   def share
     @recipe = Recipe.find(params[:id])
     email = params[:email]
