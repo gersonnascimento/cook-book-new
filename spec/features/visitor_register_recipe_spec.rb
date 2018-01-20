@@ -76,6 +76,14 @@ feature 'Visitor register recipe' do
     expect(page).to have_content('(teste@teste.com.br)')
     expect(page).not_to have_content('Título')
   end
+  scenario 'recipe have picture' do
+    recipe = create(:recipe)
+
+    login_as recipe.user
+    visit root_path
+
+    expect(page).to have_css("img[src*='imagemteste.png']")
+  end
 
 end
 def create_user

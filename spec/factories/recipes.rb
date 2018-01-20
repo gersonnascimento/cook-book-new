@@ -8,5 +8,6 @@ FactoryBot.define do
     cuisine
     recipe_type
     user
+    picture { File.new("#{Rails.root}/spec/support/fixtures/imagemteste.png") }
   end
 end
