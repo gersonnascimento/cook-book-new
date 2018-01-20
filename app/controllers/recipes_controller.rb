@@ -108,7 +108,7 @@ class RecipesController < ApplicationController
   private
 
   def receive_params
-    params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :difficulty, :cook_time, :ingredients, :method)
+    params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :difficulty, :cook_time, :ingredients, :method, :picture)
   end
   def type_cuisines
     @recipe_types = RecipeType.all

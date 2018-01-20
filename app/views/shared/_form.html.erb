@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for @recipe do |f| %>
+  <%= form_for @recipe, html: {multipart: true}  do |f| %>
 
     <div class="form-group">
       <%= f.label :title%>   
@@ -35,6 +35,9 @@
       <div class="form-group col-sm-3">
         <%= f.label :cuisine_id%>  
         <%= f.collection_select(:cuisine_id, Cuisine.all, :id, :name, include_blank:true)%>
+      </div>
+      <div>
+        <%= f.file_field :picture %>
       </div>
       <div class="form-group col-sm-3">
         <%= f.submit "Enviar", class: "btn btn-primary"%>

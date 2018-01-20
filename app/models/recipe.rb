@@ -1,4 +1,7 @@
 class Recipe < ApplicationRecord
+  attr_accessor :picture_file_name
+  has_attached_file :picture, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_file_name :picture, :matches => [/png\Z/, /jpeg\Z/]
   validates :title, :ingredients, :method, presence:true
   validates :difficulty, inclusion: { in: %w(fácil médio difícil facil medio dificil Fácil Médio Difícil Facil Medio Dificil)}
   belongs_to :cuisine

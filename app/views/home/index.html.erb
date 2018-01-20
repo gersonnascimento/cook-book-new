@@ -8,7 +8,7 @@
 
   <div class="thumbnail">
   <a href="../images/receita3.jpg">
-  <img src="../images/receita3.jpg" alt="recipe picture"%>
+  <%= image_tag recipe.picture.url(:medium) %>
 <div class="caption">
   <h1 class="title-recipe"> 
     <%if recipe.star%>
