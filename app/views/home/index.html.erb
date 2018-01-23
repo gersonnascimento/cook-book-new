@@ -1,49 +1,46 @@
 <div class="row fundo-cor">
-<%=render 'shared/side_menu'%>
+  <%=render 'shared/side_menu'%>
 
-<section class="col-sm-2 text-center">
-<h1>Receitas</h1>
-<% @recipes.each do |recipe|%>
-  <section>
-
-  <div class="thumbnail">
-  <%= image_tag recipe.picture.url(:medium) %>
-<div class="caption">
-  <h1 class="title-recipe"> 
+  <section class="col-sm-2 text-center">
+  <h1>Receitas</h1>
+  <% @recipes.each do |recipe|%>
+    <section>
+    <div class="thumbnail">
+    <%= image_tag recipe.picture.url(:medium) %>
+    <div class="caption">
+    <h1 class="title-recipe"> 
     <%if recipe.star%>
           <img src="../images/star.png" alt="recipe picture"%>
+      <%end%>
+      <%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
+    <%if recipe.star%>
+      (stared)
     <%end%>
-    <%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
-  <%if recipe.star%>
-    (stared)
+    <li><%=recipe.recipe_type.name%></li>
+    <li><%=recipe.cuisine.name %></li>
+    <li><%=recipe.difficulty%></li>
+    <li><%="#{recipe.cook_time} minutos"%></li>
+    </div>
+    </a>
+    </div>
+    </section>
   <%end%>
-  <li><%=recipe.recipe_type.name%></li>
-  <li><%=recipe.cuisine.name %></li>
-  <li><%=recipe.difficulty%></li>
-  <li><%="#{recipe.cook_time} minutos"%></li>
-</div>
-  </a>
-  </div>
+  <%unless @recipes == Recipe.all%>
+    <%=link_to 'Todas Receitas', allrecipes_recipes_path%>
+  <%else%>
+    <%=link_to 'Apenas mais recentes', root_path%>
+  <%end%>
   </section>
-<%end%>
-<%unless @recipes == Recipe.all%>
-  <%=link_to 'Todas Receitas', allrecipes_recipes_path%>
-<%else%>
-  <%=link_to 'Apenas mais recentes', root_path%>
-<%end%>
-</section>
-<div class="col-sm-1">
-</div>
+  <div class="col-sm-1">
+  </div>
 
-<section class="col-sm-2 text-center">
-  <h1>Favoritas</h1> <!-- nada por enquanto-->
-  <% if @favorites%>
-    <% @favorites.each do |recipe|%>
-      <section>
-
-        <div class="thumbnail">
-          <a href="../images/receita3.jpg">
-            <img src="../images/receita3.jpg" alt="recipe picture">
+  <section class="col-sm-2 text-center">
+    <h1>Favoritas</h1> <!-- nada por enquanto-->
+    <% if @favorites%>
+      <% @favorites.each do |recipe|%>
+        <section>
+          <div class="thumbnail">
+            <%= image_tag recipe.picture.url(:medium) %>
             <div class="caption">
               <h2 class="title-recipe"><%= recipe.title%><small>(<%=recipe.user.email%>)</small></h2>
               <li><%=recipe.recipe_type.name%></li>
@@ -51,24 +48,23 @@
               <li><%=recipe.difficulty%></li>
               <li><%="#{recipe.cook_time} minutos"%></li>
             </div>
-          </a>
-        </div>
-      </section>
+            </a>
+          </div>
+        </section>
+      <%end%>
     <%end%>
-  <%end%>
 
-</section>
-<div class="col-sm-1">
-</div>
-<section class="col-sm-3 text-center" style="background-color: orange">
-  <h1>+Favoritadas</h1> <!-- nada por enquanto-->
-  <% if @morefavoriteds%>
-    <% @morefavoriteds.each do |vetor|%>
-      <section>
+  </section>
+  <div class="col-sm-1">
+  </div>
+  <section class="col-sm-3 text-center" style="background-color: orange">
+    <h1>+Favoritadas</h1> <!-- nada por enquanto-->
+    <% if @morefavoriteds%>
+      <% @morefavoriteds.each do |vetor|%>
+        <section>
 
-        <div class="thumbnail">
-          <a href="../images/receita3.jpg">
-            <img src="../images/receita3.jpg" alt="recipe picture">
+          <div class="thumbnail">
+          #imagem aqui
             <div class="caption">
               <h3 class="title-recipe"><%= vetor.first.title%><small>(<%=vetor.first.user.email%>)</small></h3>
               <li><%=vetor.first.recipe_type.name%></li>
@@ -76,12 +72,12 @@
               <li><%=vetor.first.difficulty%></li>
               <li><%="#{vetor.first.cook_time} minutos"%></li>
             </div>
-          </a>
-        </div>
-      </section>
+            </a>
+          </div>
+        </section>
+      <%end%>
     <%end%>
-  <%end%>
 
-</section>
+  </section>
 
 </div>
