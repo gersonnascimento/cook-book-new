@@ -1,0 +1,41 @@
+<div class="container">
+  <%= simple_form_for @recipe, html: {multipart: true}  do |f| %>
+
+   <div class="form-group">
+     <%= f.input :title, input_html: {class: "form-control"}%>
+   </div>
+
+
+    <div class="form-group">
+      <%=f.input :difficulty, input_html: {class: "form-control"}%>
+    </div>
+
+    <div class="form-group">
+      <%=f.input :cook_time, input_html: {class: "form-control"}%>
+    </div>
+
+    <div class="form-group">
+      <%f.input :ingredients, input_html: {class: "form_control"}%>
+    </div>
+
+    <div class="form-group">
+      <%=f.input :method, input_html: {class:  "form_control"}%>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <%=f.input :recipe_type, input_html: {class: "form_control"}%>
+      </div>
+
+      <div class="form-group col-sm-3">
+        <%=f.input :cuisine_id, collection: @cuisines, as: :grouped_select, group_method: :all%>
+      </div>
+      <div>
+        <%= f.input :picture %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.submit "Enviar", class: "btn btn-primary"%>
+      </div>
+    </div> 
+  <% end %>
+</div>

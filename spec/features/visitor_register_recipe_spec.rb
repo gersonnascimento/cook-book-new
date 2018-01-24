@@ -76,6 +76,26 @@ feature 'Visitor register recipe' do
     expect(page).to have_content('(teste@teste.com.br)')
     expect(page).not_to have_content('Título')
   end
+  scenario 'cook_time can not be string' do
+    user = create(:user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    login_as user
+    visit new_recipe_path
+
+    fill_in 'Título', with: 'Tabule'
+    select cuisine.name, from: 'Cozinha'
+    select recipe_type.name, from: 'Tipo da Receita'
+    fill_in 'Dificuldade', with: 'Fácil'
+    fill_in 'Tempo de Preparo', with: 'Quarenta e cinco'
+    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
+    fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    click_on 'Enviar'
+    
+    expect(page).to have_content("Não foi possível criar sua receita")
+    expect(page).to have_content("Tempo de Preparo não é um número")
+  end
+
   scenario 'recipe have picture' do
     recipe = create(:recipe)
 

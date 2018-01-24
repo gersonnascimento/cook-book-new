@@ -16,6 +16,9 @@ class CuisinesController < ApplicationController
       render :new
     end
   end
+  def all 
+    @cuisines = Cuisine.all
+  end
 
   private
 
