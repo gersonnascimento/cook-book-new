@@ -10,9 +10,9 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
 
-  def empty
-    title.empty? && difficulty.empty? && cook_time.nil? && ingredients.empty? && method.empty? && cuisine.nil? && recipe_type.nil?
-  end
+  #def empty
+    #title.empty? && difficulty.empty? && cook_time.nil? && ingredients.empty? && method.empty? && cuisine.nil? && recipe_type.nil?
+#end
   def editable_by? user
     self.user == user
   end
