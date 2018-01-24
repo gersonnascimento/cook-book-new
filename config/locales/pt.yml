@@ -35,6 +35,7 @@ pt-BR:
         recipe_type_id: 'Tipo da Receita'
         cuisine: Cozinha
         cuisine_id: Cozinha
+        picture: Imagem
       user: 
         remember_me: 'Computador Privado'
         password: 'Senha'

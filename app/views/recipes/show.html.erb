@@ -12,6 +12,7 @@
 <%end%>
        <%=@arecipe.title%><small>(<%=@arecipe.user.email%>)</small></h1>
   <h3>Detalhes</h3>
+    <%= image_tag @arecipe.picture.url(:medium) %>
   <p><%=@arecipe.recipe_type.name%></p>
   <p><%=@arecipe.cuisine.name%></p>
   <p><%=@arecipe.difficulty%></p>

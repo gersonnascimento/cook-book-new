@@ -38,7 +38,8 @@
         <%= f.collection_select(:cuisine_id, Cuisine.all, :id, :name, include_blank:true)%>
       </div>
       <div>
-        <%= f.file_field :picture %>
+        <%=f.label :picture%>
+        <%= f.file_field :picture%>
       </div>
       <div class="form-group col-sm-3">
         <%= f.submit "Enviar", class: "btn btn-primary"%>
