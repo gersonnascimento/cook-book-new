@@ -30,8 +30,7 @@ feature 'User login' do
 
   scenario 'visitant don`t send new recipe' do
     visit root_path
-    click_on 'Enviar uma receita'
-
+    click_on 'Adicionar'
     expect(page).to have_content('Digite seus dados')
     expect(page).to have_content('Você precisa estar autenticado para executar esta ação.')
   end  
