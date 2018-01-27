@@ -1,49 +1,43 @@
-<nav class="navbar navbar-default" style="background-color: #B0E0E6">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <h1 style="margin-top: 0px"><a class="navbar-brand" href="<%=root_path%>">CookBook</a></h1> <!-- precisa ser h1 para passar no teste-->
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%=link_to 'Entrar', new_user_session_path%>
-        <li><%= link_to 'Início', root_path%></li>
-        <li><%= link_to 'Minhas Receitas', mine_recipes_path%></li>
-        <li><%= link_to 'Enviar uma receita', new_recipe_path%></li>
-        <li><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>  <!-- não tem login ainda-->
-
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
-
-<div class="row text-center busca">
-
-  <p>Bem-vindo ao maior livro de receitas online</p>
-  <% if user_signed_in? %>
-    <p><%=current_user.email%></p>
-  <%end%>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-sm-4"><h4><span class="glyphicon glyphicon-earphone">8888-8888</span></h4></div>
+		<div class="col-md-4 col-sm-4 text-center form-inline">
+			<%= form_tag(search_recipes_path, method: "get") do %>
+				<%= text_field_tag :word, '', class: "form-control", placeholder:'Busca' %>
+				<%= submit_tag "Buscar", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+		<div class="col-md-4 col-sm-4 text-right">
+			<% if user_signed_in? %>
+				<h4>Bem vindo(a) <%=current_user.email%></h4>
+			<%end%>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 20px;background-color: orange;">
+		<div class="col-md-4 col-sm-5">
+			<div class="logo">
+				<a href="<%=root_path%>">
+					<h1>
+						<img  src="images/social_logo.png" alt="logo">
+						CookBook
+					</h1>
+					<p>Bem-vindo ao maior livro de receitas online</p>
+				</a>
+			</div>
+		</div>
+		<div id="navbar5" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<img src="images/entrar.png" alt="login" class="img-responsive img-rounded img-menu">	
+					<%=link_to 'Entrar', new_user_session_path%></li>
+				<li><%= link_to 'Início', root_path%></li>
+				<li><%= link_to 'Minhas Receitas', mine_recipes_path%></li>
+				<li><%= link_to 'Enviar uma receita', new_recipe_path%></li>
+				<li><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>  <!-- não tem login ainda-->
+			</ul>
+		</div>
+	</div>
+	<!--/.nav-collapse -->
 </div>
-<div class="row busca">
-  <%= form_tag(search_recipes_path, method: "get") do %>
-    <div class="col-sm-3"></div>
-    <div class="col-sm-1"><h4><%= label_tag(:word, "Busca") %></h4></div>
-    <div class="col-sm-4"><%= text_field_tag :word, '', class: "form-control" %></div>
-    <div class="col-sm-3"><%= submit_tag "Buscar", class: "btn btn-primary" %></div>
-    <div class="col-sm-1"></div>
-
-</div>   
-        <% end %>
+<!-- exibe o email do usuário logado-->
+<!-- fim -->

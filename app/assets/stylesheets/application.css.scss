@@ -13,5 +13,32 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap"
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
  
+ .logo{
+	 a{
+		 text-decoration: none;
+	 }
+	 p{
+		 font-weight: bold;
+		 color: gray;
+		 font-size: small;
+	 }
+	 h1{
+		 font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; 
+		 color: black;
+		 font-size: x-large;
+	 }
+	 img{
+		 height: 100%
+	 }
+ }
+ .img-menu{
+	 width: 100px;
+	 height: 100px;
+	 background-color: #000;
+	 color: #FFF;
+
+	 border-radius: 50%;
+ }
