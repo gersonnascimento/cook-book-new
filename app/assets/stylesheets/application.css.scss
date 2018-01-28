@@ -46,14 +46,20 @@
 	 border-bottom: 2px solid gray;
 	 background-color: Gainsboro;
  }
+ .footer{ 
+	 border-top: 2px solid gray;
+	 border-bottom: 2px solid gray;
+	 background-color: Gainsboro;
+ }
  .search{
    margin-top: 3px;
  }
  .side-menu{
-   background-color: DeepSkyBlue;
+   background-color: Gainsboro;
    h2{
-    font-size: medium; 
-    background-color: Gainsboro;
+    font-size: large; 
+    background-color: gray;
+    color: white;
    }
    a{
     color: black;
@@ -69,4 +75,13 @@ a{
  text-decoration: none;
  color: black;
 } 
+ }
+ #featured{
+  background-color:Gold; 
+ }
+ #navbar{
+   a{
+     text-decoration: none;
+     color: black;
+   }
  }

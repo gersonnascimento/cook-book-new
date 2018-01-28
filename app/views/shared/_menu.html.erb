@@ -24,23 +24,26 @@
         </a>
       </div>
     </div>
-    <div id="navbar5" class="navbar-collapse collapse">
+    <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li class="text-center"><a href="<%=new_user_session_path%>">
-            <img src="../images/user.png" alt="login" class="img-responsive img-rounded img-menu">
-            Entrar</a></li>
         <li class="text-center"><a href="<%=root_path%>">
-            <img src="../images/home.png" alt="login" class="img-responsive img-rounded img-menu">
+            <img src="../images/home2.png" alt="login" class="img-responsive img-rounded img-menu">
             Início</a></li>
         <li class="text-center"><a href="<%=mine_recipes_path%>">
             <img src="../images/book.png" alt="login" class="img-responsive img-rounded img-menu">
             Minhas<br>Receitas</a></li>
         <li class= "text-center"><a href="<%=new_recipe_path%>">
-            <img src="../images/new.png" alt="login" class="img-responsive img-rounded img-menu">
+            <img src="../images/newrecipe.png" alt="login" class="img-responsive img-rounded img-menu">
             Adicionar</a></li>
+        <%if !user_signed_in?%>
+        <li class="text-center"><a href="<%=new_user_session_path%>">
+            <img src="../images/user.png" alt="login" class="img-responsive img-rounded img-menu">
+            Entrar</a></li>
+      <%else%>
         <li class="text-center"><a href="<%=destroy_user_session_path%>" data-method="DELETE">
-            <img src="../images/exit.png" alt="login" class="img-responsive img-rounded img-menu">
+            <img src="../images/off.png" alt="login" class="img-responsive img-rounded img-menu">
             Sair</a></li>
+      <%end%>
       </ul>
     </div>
   </div>
