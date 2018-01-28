@@ -1,6 +1,9 @@
 <%if flash[:error] %>
   <div class="alert alert-danger text-center" role="alert"><%= flash[:error] %></div>
 <% end %>
+<div class="col-sm-2 side-menu">
+  <%=render 'shared/side_menu'%>
+</div><!-- colsm2-->
 <div>
   <% @new_type.errors.full_messages.each do |msg| %>
     <p><%= msg%><p>

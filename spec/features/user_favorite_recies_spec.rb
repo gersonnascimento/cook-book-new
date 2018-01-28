@@ -39,7 +39,7 @@ feature 'user favorite recipes' do
     click_on 'Adicionar aos favoritos'
     click_on 'Início'
 
-    expect(page).to have_css('h2', text: recipe.title)
+    expect(page).to have_css('h1', text: recipe.title)
     expect(page).not_to have_content('Adicionar aos favoritos')
   end
   scenario 'unfavorite recipe' do 

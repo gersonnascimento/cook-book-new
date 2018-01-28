@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <head>
-	<title>Social Recipes</title>
-	<%= csrf_meta_tags %>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <title>Social Recipes</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-	<%=render "shared/menu"%>
-	<%if flash[:notice]%>
-		<div class="alert alert-success text-center">
-			<p class="notice"><%= notice %></p>
-		</div>
-	<% end %>
-	<%if flash[:alert]%>
-		<div class="alert alert-danger text-center">
-			<p class="alert"><%= alert %></p>
-		</div>
-	<% end %>
-	<%= yield %>
-	<footer class="footer">
-		<div class="container text-center">
-			<p>Social Recipes | Copyright 2017</p>
-			<p>Quero ser Dev!</p>
-		</div>
-	</footer>
+  <div class="container">
+    <%=render "shared/menu"%>
+    <%if flash[:notice]%>
+      <div class="alert alert-success text-center">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <%if flash[:alert]%>
+      <div class="alert alert-danger text-center">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+    <%= yield %>
+  <footer class="footer text-center">
+      <p>Social Recipes | Copyright 2017</p>
+      <p>Quero ser Dev!</p>
+  </footer>
+  </div>
 </body>
 </html>

@@ -1,8 +1,11 @@
-<div class="row fundo-cor">
+<div class="row">
+<div class="col-sm-2 side-menu">
   <%=render 'shared/side_menu'%>
+  </div><!-- colsm2-->
 
-  <section class="col-sm-2 text-center">
+  <section class="col-sm-3 text-center list-recipes">
   <h1>Receitas</h1>
+  <%if@recipes && !@recipes.empty?%>
   <% @recipes.each do |recipe|%>
     <section>
     <div class="thumbnail">
@@ -16,33 +19,37 @@
     <%if recipe.star%>
       (stared)
     <%end%>
-    <li><%=recipe.recipe_type.name%></li>
-    <li><%=recipe.cuisine.name %></li>
-    <li><%=recipe.difficulty%></li>
-    <li><%="#{recipe.cook_time} minutos"%></li>
+    <li>Tipo de Receita: <%=recipe.recipe_type.name%></li>
+    <li>Cozinha: <%=recipe.cuisine.name %></li>
+    <li>Dificuldade: <%=recipe.difficulty%></li>
+    <li>Tempo de Preparo: <%="#{recipe.cook_time} minutos"%></li>
     </div>
     </a>
     </div>
     </section>
   <%end%>
-  <%unless @recipes == Recipe.all%>
-    <%=link_to 'Todas Receitas', allrecipes_recipes_path%>
-  <%else%>
+  <%if @recipes == Recipe.all%>
     <%=link_to 'Apenas mais recentes', root_path%>
+  <%else%>
+    <%=link_to 'Todas Receitas', allrecipes_recipes_path%>
   <%end%>
-  </section>
-  <div class="col-sm-1">
-  </div>
 
-  <section class="col-sm-2 text-center">
+<%else%>
+  <p>Nenhuma Receita cadastrada</p>
+<%end%><!-- if @recipes-->
+
+  </section>
+  
+
+  <section class="col-sm-3 text-center list-recipes">
     <h1>Favoritas</h1> <!-- nada por enquanto-->
-    <% if @favorites%>
+    <% if @favorites && !@favorites.empty?%>
       <% @favorites.each do |recipe|%>
         <section>
           <div class="thumbnail">
             <%= image_tag recipe.picture.url(:medium) %>
             <div class="caption">
-              <h2 class="title-recipe"><%= recipe.title%><small>(<%=recipe.user.email%>)</small></h2>
+              <h1 class="title-recipe"><%= recipe.title%><small>(<%=recipe.user.email%>)</small></h1>
               <li><%=recipe.recipe_type.name%></li>
               <li><%=recipe.cuisine.name %></li>
               <li><%=recipe.difficulty%></li>
@@ -52,19 +59,20 @@
           </div>
         </section>
       <%end%>
+    <%else%>
+      <p>Nenhuma receita marcada como favorita.</p>
     <%end%>
 
   </section>
-  <div class="col-sm-1">
-  </div>
-  <section class="col-sm-3 text-center" style="background-color: orange">
+<div class="col-sm-1">
+</div>
+  <section class="col-sm-3 text-center list-recipes" style="background-color: orange">
     <h1>+Favoritadas</h1> <!-- nada por enquanto-->
     <% if @morefavoriteds%>
       <% @morefavoriteds.each do |vetor|%>
         <section>
-
           <div class="thumbnail">
-          #imagem aqui
+    <%= image_tag vetor.first.picture.url(:medium) %>
             <div class="caption">
               <h3 class="title-recipe"><%= vetor.first.title%><small>(<%=vetor.first.user.email%>)</small></h3>
               <li><%=vetor.first.recipe_type.name%></li>
@@ -77,7 +85,6 @@
         </section>
       <%end%>
     <%end%>
-
   </section>
 
 </div>

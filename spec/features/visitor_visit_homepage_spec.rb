@@ -80,8 +80,19 @@ feature 'Visitor visit homepage' do
     expect(page).to have_css('h1', text: recipe5.title)
     expect(page).to have_css('h1', text: recipe6.title)
     expect(page).to have_css('h1', text: recipe7.title)
-
-
   end
+  scenario 'and view your recipes' do
+	  user = create(:user, email: 'teste@teste.com.br')
+	  user2 = create(:user, email: 'teste2@teste.com.br')
+	  recipe1 = create(:recipe, user: user)
+	  recipe2 = create(:recipe, user: user, title: 'Mousse')
+	  recipe3 = create(:recipe, user: user2, title: 'Torta')
 
+	  login_as user
+    visit mine_recipes_path
+
+	  expect(page).to have_content(recipe1.title)
+	  expect(page).to have_content(recipe2.title)
+	  expect(page).not_to have_content(recipe3.title)
+  end 
 end
