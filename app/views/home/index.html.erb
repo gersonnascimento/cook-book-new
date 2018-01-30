@@ -2,10 +2,20 @@
 <div class="col-sm-2 side-menu">
   <%=render 'shared/side_menu'%>
   </div><!-- colsm2-->
+    <%if flash[:notice]%>
+      <div class="alert alert-success text-center col-sm-10">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <%if flash[:alert]%>
+      <div class="alert alert-danger text-center col-sm-10">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
 
   <section class="col-sm-3 text-center list-recipes">
   <h1>Receitas</h1>
-  <%if@recipes && !@recipes.empty?%>
+  <%if @recipes && !@recipes.empty?%>
   <% @recipes.each do |recipe|%>
     <section>
     <div class="thumbnail">
@@ -28,9 +38,9 @@
     </div>
     </section>
   <%end%>
-  <%if @recipes == Recipe.all%>
+  <%if @recipes.size>6 && @recipes == Recipe.all%>
     <%=link_to 'Apenas mais recentes', root_path%>
-  <%else%>
+  <%elsif @recipes.size>6 %>
     <%=link_to 'Todas Receitas', allrecipes_recipes_path%>
   <%end%>
 

@@ -1,73 +1,75 @@
 <div class="row">
-<div class="col-sm-2 side-menu">
-  <%=render 'shared/side_menu'%>
+  <div class="col-sm-2 side-menu">
+    <%=render 'shared/side_menu'%>
   </div><!-- colsm2-->
-  <div class="col-sm-5">
-
-  <div class="text-center">
-  <section>
-  <h1> 
-  <%if @arecipe.star%>
-         <img src="../images/star.png" alt="recipe picture"%>
-<%end%>
-       <%=@arecipe.title%><small>(<%=@arecipe.user.email%>)</small></h1>
-  <h3>Detalhes</h3>
-    <%= image_tag @arecipe.picture.url(:medium) %>
-  <p><%=@arecipe.recipe_type.name%></p>
-  <p><%=@arecipe.cuisine.name%></p>
-  <p><%=@arecipe.difficulty%></p>
-  <p><%="#{@arecipe.cook_time} minutos"%></p>
-  <% if @arecipe.editable_by? current_user%>
-    <%=link_to 'Editar', edit_recipe_path(@arecipe.id)%>
-    <%=link_to 'Excluir', recipe_path(@arecipe), method: :delete, data: {confirm: "Tem certeza que deseja excluir #{@arecipe.title}?"} %>
-  <%end%>
-  <%=link_to 'Voltar', root_path%>
-  <%if user_signed_in? && current_user.favorited?(@arecipe)%>
-    <%=link_to 'Remover dos favoritos', unfavorite_recipe_path(@arecipe), method: :delete%>
-  <% else %>
-    <%=link_to 'Adicionar aos favoritos', favorite_recipe_path(@arecipe), method: :post unless !user_signed_in?%>
-  <%end%>
-  <% if user_signed_in? && @arecipe.star%>
-    <%= link_to 'Unstar', unstar_recipe_path, method: :delete unless !user_signed_in?%>
-    (starred)
-  <%else%>
-    <%= link_to 'Star', star_recipe_path, method: :post unless !user_signed_in?%>
-  <%end%>
-  </section>
-  </div>
-  </div>
-
-  <div class="col-sm-5">
-
-    <div style="margin-left: 50px">
+  <%if flash[:notice]%>
+    <div class="alert alert-success text-center col-sm-10">
+      <p class="notice"><%= notice %></p>
     </div>
-  </div>
-</div>
-<div>
-  <h1>Compartilhar Receita</h1>
-  <%= form_tag(share_recipe_path, method: :post) do %>
-    <%= label_tag :email, 'E-mail' %>
-    <%= text_field_tag :email %>
-    <%= label_tag :message, 'Mensagem' %>
-    <%= text_area_tag :message %>
-    <%= submit_tag 'Compartilhar'%>
-  <%end%>
-</div> 
+  <% end %>
+  <%if flash[:alert]%>
+    <div class="alert alert-danger text-center col-sm-10">
+      <p class="alert"><%= alert %></p>
+    </div>
+  <% end %>
 
-<div class="row">
+  <section class="col-sm-5 text-center">
+    <h1> 
+    <%if @arecipe.star%>
+      <img src="../images/star.png" alt="recipe picture"%>
+    <%end%>
+    <%=@arecipe.title%><small>(<%=@arecipe.user.email%>)</small></h1>
+    <h3>Detalhes</h3>
+    <p><%=@arecipe.recipe_type.name%></p>
+    <p><%=@arecipe.cuisine.name%></p>
+    <p><%=@arecipe.difficulty%></p>
+    <p><%="#{@arecipe.cook_time} minutos"%></p>
+    <% if @arecipe.editable_by? current_user%>
+      <%=link_to 'Editar', edit_recipe_path(@arecipe.id)%>
+      <%=link_to 'Excluir', recipe_path(@arecipe), method: :delete, data: {confirm: "Tem certeza que deseja excluir #{@arecipe.title}?"} %>
+    <%end%>
+    <%=link_to 'Voltar', root_path%>
+    <%if user_signed_in? && current_user.favorited?(@arecipe)%>
+      <%=link_to 'Remover dos favoritos', favorite_recipe_path(@arecipe), method: :delete%>
+    <% else %>
+      <%=link_to 'Adicionar aos favoritos', favorite_recipe_path(@arecipe), method: :post unless !user_signed_in?%>
+    <%end%>
+    <% if user_signed_in? && @arecipe.star%>
+      <%= link_to 'Unstar', star_recipe_path, method: :delete unless !user_signed_in?%>
+      (starred)
+    <%else%>
+      <%= link_to 'Star', star_recipe_path, method: :post unless !user_signed_in?%>
+    <%end%>
+  </section>
+  <section class="col-sm-5">
+    <div class="img-show text-center">
+    <%= image_tag @arecipe.picture.url(:medium) %>
+    </div>
+  </section>
+</div><!-- row -->
+  <div class="row">
+<div class="col-sm-2 form-share text-center">
+    <h1>Compartilhar Receita</h1>
+    <%= form_tag(share_recipe_path, method: :post) do %>
+      <%= label_tag :email, 'E-mail' %>
+      <%= text_field_tag :email,'', class: "form-control" %>
+      <%= label_tag :message, 'Mensagem' %>
+      <%= text_area_tag :message, '', class: "form-control"%>
+      <%= submit_tag 'Compartilhar'%>
+    <%end%>
+  </div> 
 
-  <div class="col-sm-2" ></div>
-  <div class="col-sm-5">
-    <section class="text-center">
-      <h3>Ingredientes</h3>
-      <p><%=@arecipe.ingredients%></p>
-    </section>
-  </div>
-  <div class="col-sm-5"> 
-    <section class="text-center">
-      <h3>Como Preparar</h3>
-      <p><%=@arecipe.method%></p>
-    </section>
-  </div>
+    <div class="col-sm-5">
+      <section class="text-center">
+        <h3>Ingredientes</h3>
+        <p><%=@arecipe.ingredients%></p>
+      </section>
+    </div>
+    <div class="col-sm-5"> 
+      <section class="text-center">
+        <h3>Como Preparar</h3>
+        <p><%=@arecipe.method%></p>
+      </section>
+    </div>
 
-</div>
+  </div>

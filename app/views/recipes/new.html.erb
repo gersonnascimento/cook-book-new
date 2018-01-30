@@ -1,10 +1,28 @@
+<div class="row">
+  <div class="col-sm-2 side-menu">
+    <%=render 'shared/side_menu'%>
+  </div><!-- colsm2-->
+  <%if flash[:notice]%>
+    <div class="alert alert-success text-center col-sm-10">
+      <p class="notice"><%= notice %></p>
+    </div>
+  <% end %>
+  <%if flash[:alert]%>
+    <div class="alert alert-danger text-center col-sm-10">
+      <p class="alert"><%= alert %></p>
+    </div>
+  <% end %>
 <%if flash[:error] %>
-  <div class="alert alert-danger text-center" role="alert"><%= flash[:error] %></div>
+  <div class="alert alert-danger text-center col-sm-10" role="alert"><%= flash[:error] %></div>
 <% end %>
-
 <% @recipe.errors.full_messages.each do |msg| %>
+<div class="alert alert-danger text-center col-sm-10">
   <p><%= msg%><p>
+</div>
 <%end%>
+<div class="col-sm-2"></div>
+<div class="col-sm-6">
 <div class="formrecipe">
   <%=render 'shared/form'%>
+</div>
 </div>

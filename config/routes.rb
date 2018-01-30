@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :new, :create, :edit, :update, :show, :destroy] do 
     member do
       post 'favorite'
-      delete 'unfavorite'
+      delete 'favorite', to: 'recipes#unfavorite'
       post 'share'
       post 'star'
-      delete 'unstar'
+      delete 'star', to: 'recipes#unstar'
     end
     collection do
       get 'mine'

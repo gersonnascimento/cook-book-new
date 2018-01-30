@@ -50,6 +50,7 @@
 	 border-top: 2px solid gray;
 	 border-bottom: 2px solid gray;
 	 background-color: Gainsboro;
+   margin-top: 10px;
  }
  .search{
    margin-top: 3px;
@@ -83,5 +84,15 @@ a{
    a{
      text-decoration: none;
      color: black;
+   }
+ }
+ .img-show{
+   margin-top: 20px;
+ }
+ .form-share{
+   background-color: Bisque;
+	 border: 2px solid gray;
+   h1{
+     font-size: medium;
    }
  }
