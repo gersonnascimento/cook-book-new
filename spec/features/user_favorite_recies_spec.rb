@@ -85,6 +85,12 @@ feature 'user favorite recipes' do
     expect(page).to have_content(user2.email)
 
   end
+  scenario 'must not to see favorites link unlogged' do
+    
+    visit root_path
+
+    expect(page).not_to have_link('Favoritos')
+  end
 end
 
 def create_user

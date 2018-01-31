@@ -32,9 +32,11 @@
         <li class="text-center"><a href="<%=mine_recipes_path%>">
             <img src="../images/book.png" alt="" class="img-responsive img-rounded img-menu">
             Minhas<br>Receitas</a></li>
+        <%if user_signed_in?%>
         <li class="text-center"><a href="<%=favorites_recipes_path%>">
             <img src="../images/heart.png" alt="" class="img-responsive img-rounded img-menu">
             Favoritos</a></li>
+      <%end%>
         <li class= "text-center"><a href="<%=new_recipe_path%>">
             <img src="../images/newrecipe.png" alt="" class="img-responsive img-rounded img-menu">
             Adicionar</a></li>
