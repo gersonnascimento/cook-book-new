@@ -37,7 +37,7 @@ feature 'user favorite recipes' do
     visit root_path
     click_on 'Bolodecenoura'
     click_on 'Adicionar aos favoritos'
-    click_on 'Início'
+    click_on 'Favoritos'
 
     expect(page).to have_css('h1', text: recipe.title)
     expect(page).not_to have_content('Adicionar aos favoritos')

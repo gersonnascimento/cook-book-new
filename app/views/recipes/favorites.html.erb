@@ -14,9 +14,9 @@
     <% end %>
 
   <section class="col-sm-3 text-center list-recipes">
-  <h1>Receitas</h1>
-  <%if @recipes && !@recipes.empty?%>
-  <% @recipes.each do |recipe|%>
+  <h1>Favoritas</h1>
+  <%if @favorites && !@favorites.empty?%>
+  <% @favorites.each do |recipe|%>
     <section>
     <div class="thumbnail">
     <%= image_tag recipe.picture.url(:medium) %>
@@ -38,22 +38,22 @@
     </div>
     </section>
   <%end%>
-  <%if @recipes.size>6 && @recipes == Recipe.all%>
+  <%if @favorites.size>6 && @favorites == Recipe.all%>
     <%=link_to 'Apenas mais recentes', root_path%>
-  <%elsif @recipes.size>6 %>
+  <%elsif @favorites.size>6 %>
     <%=link_to 'Todas Receitas', allrecipes_recipes_path%>
   <%end%>
 
 <%else%>
-  <p>Nenhuma Receita cadastrada</p>
-<%end%><!-- if @recipes-->
+  <p>Nenhuma receita favoritada</p>
+<%end%><!-- if @favorites-->
 
   </section>
   
 
   <section class="col-sm-3 text-center list-recipes">
-    <h1>Favoritas</h1> <!-- nada por enquanto-->
-       Vai sair daqui!
+    <h1>Nothing</h1> <!-- nada por enquanto-->
+    vai sair daqui
   </section>
 <div class="col-sm-1">
 </div>

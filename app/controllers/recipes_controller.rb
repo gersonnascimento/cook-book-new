@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite, :mine] 
-  before_action :type_cuisines, only: [:create, :show, :mine, :allrecipes, :new]
+  before_action :type_cuisines, only: [:create, :show, :mine, :allrecipes, :new, :favorites]
 
   def star
     @recipe = Recipe.find(params[:id])
@@ -36,6 +36,11 @@ class RecipesController < ApplicationController
     current_user.favorite_recipes << @arecipe
     flash[:notice] = "Receita adicionada aos seus favoritos"
     redirect_to @arecipe
+  end
+  def favorites
+    if user_signed_in?
+      @favorites = current_user.favorite_recipes
+    end
   end
   def show
     @arecipe = Recipe.find(params[:id])

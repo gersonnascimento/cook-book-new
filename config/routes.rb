@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       delete 'star', to: 'recipes#unstar'
     end
     collection do
+      get 'favorites'
       get 'mine'
       get 'allrecipes'
       get 'search'
