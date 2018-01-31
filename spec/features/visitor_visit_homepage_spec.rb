@@ -80,6 +80,33 @@ feature 'Visitor visit homepage' do
     expect(page).to have_css('h1', text: recipe5.title)
     expect(page).to have_css('h1', text: recipe6.title)
     expect(page).to have_css('h1', text: recipe7.title)
+    expect(page).to have_link('Ver todas as receitas')
+  end
+  scenario 'view all recipes' do 
+    user = create(:user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe1 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe2 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe3 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe4 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe5 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe6 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+    recipe7 = create(:recipe, cuisine: cuisine, recipe_type: recipe_type, user:user)
+	  	
+    # simula a ação do usuário
+    visit root_path
+    click_on "Ver todas as receitas"
+
+    # expectativas do usuário após a ação
+    expect(page).to have_css('h1', text: recipe1.title)
+    expect(page).to have_css('h1', text: recipe2.title)
+    expect(page).to have_css('h1', text: recipe3.title)
+    expect(page).to have_css('h1', text: recipe4.title)
+    expect(page).to have_css('h1', text: recipe5.title)
+    expect(page).to have_css('h1', text: recipe6.title)
+    expect(page).to have_css('h1', text: recipe7.title)
+    expect(page).to have_link('Apenas mais recentes')
   end
   scenario 'and view your recipes' do
 	  user = create(:user, email: 'teste@teste.com.br')
@@ -95,4 +122,5 @@ feature 'Visitor visit homepage' do
 	  expect(page).to have_content(recipe2.title)
 	  expect(page).not_to have_content(recipe3.title)
   end 
+ 
 end

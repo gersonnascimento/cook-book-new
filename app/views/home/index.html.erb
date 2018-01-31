@@ -17,6 +17,7 @@
   <h1>Receitas</h1>
   <%if @recipes && !@recipes.empty?%>
   <% @recipes.each do |recipe|%>
+    <%if @recipes.index(recipe).even?%>
     <section>
     <div class="thumbnail">
     <%= image_tag recipe.picture.url(:medium) %>
@@ -38,10 +39,11 @@
     </div>
     </section>
   <%end%>
-  <%if @recipes.size>6 && @recipes == Recipe.all%>
+  <%end%>
+  <%if Recipe.all.size>6 && @recipes == Recipe.all%>
     <%=link_to 'Apenas mais recentes', root_path%>
-  <%elsif @recipes.size>6 %>
-    <%=link_to 'Todas Receitas', allrecipes_recipes_path%>
+  <%elsif Recipe.all.size>6 %>
+    <%=link_to 'Ver todas as receitas', allrecipes_recipes_path%>
   <%end%>
 
 <%else%>
@@ -50,20 +52,45 @@
 
   </section>
   
-
   <section class="col-sm-3 text-center list-recipes">
-    <h1>Favoritas</h1> <!-- nada por enquanto-->
-       Vai sair daqui!
+  <h1>Receitas</h1>
+  <%if @recipes && !@recipes.empty?%>
+  <% @recipes.each do |recipe|%>
+    <%if !@recipes.index(recipe).even?%>
+    <section>
+    <div class="thumbnail">
+    <%= image_tag recipe.picture.url(:medium) %>
+    <div class="caption">
+    <h1 class="title-recipe"> 
+    <%if recipe.star%>
+          <img src="../images/star.png" alt="recipe picture"%>
+      <%end%>
+      <%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
+    <%if recipe.star%>
+      (stared)
+    <%end%>
+    <li>Tipo de Receita: <%=recipe.recipe_type.name%></li>
+    <li>Cozinha: <%=recipe.cuisine.name %></li>
+    <li>Dificuldade: <%=recipe.difficulty%></li>
+    <li>Tempo de Preparo: <%="#{recipe.cook_time} minutos"%></li>
+    </div>
+    </a>
+    </div>
+    </section>
+  <%end%>
+  <%end%>
+<%end%>
   </section>
-<div class="col-sm-1">
-</div>
+
+  <div class="col-sm-1">
+  </div>
   <section class="col-sm-3 text-center list-recipes" id="featured">
     <h1>+Favoritadas</h1> <!-- nada por enquanto-->
     <% if @morefavoriteds%>
       <% @morefavoriteds.each do |vetor|%>
         <section>
           <div class="thumbnail">
-    <%= image_tag vetor.first.picture.url(:medium) %>
+            <%= image_tag vetor.first.picture.url(:medium) %>
             <div class="caption">
               <h3 class="title-recipe"><%= vetor.first.title%><small>(<%=vetor.first.user.email%>)</small></h3>
               <li><%=vetor.first.recipe_type.name%></li>
