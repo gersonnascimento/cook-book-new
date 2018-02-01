@@ -1,6 +1,6 @@
 class RecipeTypesController < ApplicationController
   before_action :type_cuisines
-  
+
   def show
     @type = RecipeType.find(params[:id])
     @recipes = Recipe.where(recipe_type: @type)
@@ -15,7 +15,7 @@ class RecipeTypesController < ApplicationController
     if @new_type.save
       redirect_to @new_type
     else
-      flash[:error] = 'Você deve informar o nome do tipo de receita'
+      flash[:error] = 'Não foi possível adicionar o tipo de receita.'
       render :new
     end
   end
