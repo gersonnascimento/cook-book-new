@@ -37,7 +37,6 @@
     <% if user_signed_in? && @arecipe.editable_by?(current_user)%>
     <%if @arecipe.star%>
       <%= link_to 'Unstar', star_recipe_path, method: :delete unless !user_signed_in?%>
-      (starred)
     <%else%>
       <%= link_to 'Star', star_recipe_path, method: :post unless !user_signed_in?%>
     <%end%>

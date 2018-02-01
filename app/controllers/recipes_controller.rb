@@ -5,11 +5,11 @@ class RecipesController < ApplicationController
   def star
     @recipe = Recipe.find(params[:id])
     if @recipe.update(star: true)
-    flash[:notice] = 'Receita marcada com sucesso!'
-    redirect_to @recipe
+      flash[:notice] = 'Receita marcada com sucesso!'
+      redirect_to @recipe
     else
-    flash[:alert] = 'Não foi possível marcar!'
-    redirect_to @recipe
+      flash[:alert] = 'Não foi possível marcar!'
+      redirect_to @recipe
     end
   end
 
@@ -28,7 +28,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     email = params[:email]
     msg = params[:message]
-
     RecipesMailer.share(email,msg, @recipe.id).deliver_now
     flash[:notice] = 'Enviada com sucesso'
     redirect_to @recipe

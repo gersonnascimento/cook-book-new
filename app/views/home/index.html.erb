@@ -15,7 +15,7 @@
   <section class="col-sm-7 text-center list-recipes">
     <h1>Receitas</h1>
     <%if @recipes && !@recipes.empty?%>
-      <% @recipes.each do |recipe|%>
+      <% @recipes.reverse_each do |recipe|%>
         <section class="show-recipe">
           <div class="thumbnail">
             <%= image_tag recipe.picture.url(:medium),:style =>"height: 200px;" %>
