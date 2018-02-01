@@ -38,9 +38,10 @@ class RecipesController < ApplicationController
     redirect_to @arecipe
   end
   def favorites
-    if user_signed_in?
-      @favorites = current_user.favorite_recipes
-    end
+    @recipes = current_user.favorite_recipes
+    vet = Favorite.group(:recipe).count
+    @morefavoriteds = vet.max_by(3) { |i| i[1]} 
+    render 'home/index'
   end
   def show
     @arecipe = Recipe.find(params[:id])
