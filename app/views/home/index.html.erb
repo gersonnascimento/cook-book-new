@@ -1,51 +1,48 @@
 <div class="row">
-<div class="col-sm-2 side-menu">
-  <%=render 'shared/side_menu'%>
+  <div class="col-sm-2 side-menu">
+    <%=render 'shared/side_menu'%>
   </div><!-- colsm2-->
-    <%if flash[:notice]%>
-      <div class="alert alert-success text-center col-sm-10">
-        <p class="notice"><%= notice %></p>
-      </div>
-    <% end %>
-    <%if flash[:alert]%>
-      <div class="alert alert-danger text-center col-sm-10">
-        <p class="alert"><%= alert %></p>
-      </div>
-    <% end %>
+  <%if flash[:notice]%>
+    <div class="alert alert-success text-center col-sm-10">
+      <p class="notice"><%= notice %></p>
+    </div>
+  <% end %>
+  <%if flash[:alert]%>
+    <div class="alert alert-danger text-center col-sm-10">
+      <p class="alert"><%= alert %></p>
+    </div>
+  <% end %>
   <section class="col-sm-7 text-center list-recipes">
-  <h1>Receitas</h1>
-  <%if @recipes && !@recipes.empty?%>
-  <% @recipes.each do |recipe|%>
-    <section class="show-recipe">
-    <div class="thumbnail">
-    <%= image_tag recipe.picture.url(:medium),:style =>"height: 200px;" %>
-    <div class="caption">
-    <h1 class="title-recipe"> 
-    <%if recipe.star%>
-          <img src="../images/star.png" alt="recipe picture" class="favorite-icon"%>
-      <%end%>
-      <%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
-    <li>Tipo de Receita: <%=recipe.recipe_type.name%></li>
-    <li>Cozinha: <%=recipe.cuisine.name %></li>
-    <li>Dificuldade: <%=recipe.difficulty%></li>
-    <li>Tempo de Preparo: <%="#{recipe.cook_time} minutos"%></li>
-    </div>
-    </a>
-    </div>
-    </section>
-  <%end%>
-  <%if Recipe.all.size>6 && @recipes == Recipe.all%>
-    <%=link_to 'Apenas mais recentes', root_path%>
-  <%elsif Recipe.all.size>6 %>
-    <%=link_to 'Ver todas as receitas', allrecipes_recipes_path%>
-  <%end%>
-
-<%else%>
-  <p>Nenhuma Receita cadastrada</p>
-<%end%><!-- if @recipes-->
-
+    <h1>Receitas</h1>
+    <%if @recipes && !@recipes.empty?%>
+      <% @recipes.each do |recipe|%>
+        <section class="show-recipe">
+          <div class="thumbnail">
+            <%= image_tag recipe.picture.url(:medium),:style =>"height: 200px;" %>
+            <div class="caption">
+              <h1 class="title-recipe">
+              <%if recipe.star%>
+                <img src="../images/star.png" alt="recipe picture" class="favorite-icon"%>
+              <%end%>
+              <%= link_to recipe.title, recipe_path(recipe.id)%><small>(<%=recipe.user.email%>)</small></h1>
+              <li>Tipo de Receita: <%=recipe.recipe_type.name%></li>
+              <li>Cozinha: <%=recipe.cuisine.name %></li>
+              <li>Dificuldade: <%=recipe.difficulty%></li>
+              <li>Tempo de Preparo: <%="#{recipe.cook_time} minutos"%></li>
+            </div>
+          </div>
+        </section>
+    <%end%><!-- each-->
+    <%if Recipe.all.size>6 && @recipes == Recipe.all%>
+      <%=link_to 'Apenas mais recentes', root_path%>
+    <%elsif Recipe.all.size>6 %>
+      <%=link_to 'Ver todas as receitas', allrecipes_recipes_path%>
+    <%end%>
+    <%else%>
+      <p>Nenhuma Receita encontrada.</p>
+    <%end%><!-- if @recipes-->
   </section>
-  
+
   <section class="col-sm-3 text-center list-recipes" id="featured">
     <h1>+Favoritadas</h1> <!-- nada por enquanto-->
     <% if @morefavoriteds%>

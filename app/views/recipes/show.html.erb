@@ -14,7 +14,7 @@
   <% end %>
 
   <section class="col-sm-5 text-center">
-    <h1> 
+    <h1>
     <%if @arecipe.star%>
       <img src="../images/star.png" alt="recipe picture"%>
     <%end%>
@@ -34,11 +34,13 @@
     <% else %>
       <%=link_to 'Adicionar aos favoritos', favorite_recipe_path(@arecipe), method: :post unless !user_signed_in?%>
     <%end%>
-    <% if user_signed_in? && @arecipe.star%>
+    <% if user_signed_in? && @arecipe.editable_by?(current_user)%>
+    <%if @arecipe.star%>
       <%= link_to 'Unstar', star_recipe_path, method: :delete unless !user_signed_in?%>
       (starred)
     <%else%>
       <%= link_to 'Star', star_recipe_path, method: :post unless !user_signed_in?%>
+    <%end%>
     <%end%>
   </section>
   <section class="col-sm-5">
@@ -57,7 +59,7 @@
       <%= text_area_tag :message, '', class: "form-control"%>
       <%= submit_tag 'Compartilhar'%>
     <%end%>
-  </div> 
+  </div>
 
     <div class="col-sm-5">
       <section class="text-center">
@@ -65,7 +67,7 @@
         <p><%=@arecipe.ingredients%></p>
       </section>
     </div>
-    <div class="col-sm-5"> 
+    <div class="col-sm-5">
       <section class="text-center">
         <h3>Como Preparar</h3>
         <p><%=@arecipe.method%></p>
