@@ -17,7 +17,6 @@ feature 'User update recipe' do
                            ingredients: 'Farinha, açucar, cenoura',
                            method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: 1)
 
-    # simula a ação do usuário
     visit root_path
     click_on 'Bolodecenoura'
     click_on 'Editar'
@@ -46,19 +45,17 @@ feature 'User update recipe' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
     create_user
     arabian_cuisine = Cuisine.create(name: 'Arabe')
-    brazilian_cuisine = Cuisine.create(name: 'Brasileira')
 
     appetizer_type = RecipeType.create(name: 'Entrada')
     main_type = RecipeType.create(name: 'Prato Principal')
-    dessert_type = RecipeType.create(name: 'Sobremesa')
 
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
+    Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
                            cuisine: arabian_cuisine, difficulty: 'Médio',
                            cook_time: 50,
                            ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: 1)
+                           method: 'Cozinhe a cenoura, corte em pedaços pequenos,
+                                    misture com o restante dos ingredientes', user_id: 1)
 
-    # simula a ação do usuário
     visit root_path
     click_on 'Bolodecenoura'
     click_on 'Editar'
@@ -79,5 +76,5 @@ def create_user
   fill_in 'Email', with: 'teste@teste.com.br'
   fill_in 'Senha', with: '123456'
   fill_in 'Confirmação da senha', with: '123456'
-  click_on 'Finalizar Cadastro' 
+  click_on 'Finalizar Cadastro'
 end
