@@ -5,10 +5,10 @@ feature 'Visitor view recipes by type' do
 
   scenario 'from home page' do
     # cria os dados necessários previamente
-    
+
     recipe_type = create(:recipe_type)
     recipe = create(:recipe, recipe_type:recipe_type)
-    
+
     # simula a ação do usuário
     visit root_path
     click_on recipe_type.name
@@ -33,7 +33,7 @@ feature 'Visitor view recipes by type' do
     italian_cuisine = Cuisine.create(name: 'Italiana')
     main_recipe_type = create(:recipe_type, name:'Principal')
     main_recipe = create(:recipe, user:user, cuisine:main_cuisine, recipe_type: main_recipe_type, difficulty:'Difícil', cook_time:22)
-    
+
     # simula a ação do usuário
     visit root_path
     click_on main_recipe_type.name

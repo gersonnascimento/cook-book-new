@@ -45,7 +45,7 @@ feature 'Visitor view recipes by cuisine' do
 
   scenario 'and cuisine has no recipe' do
     # cria os dados necessários previamente
-	  
+
     recipe = create(:recipe)
 
     italian_cuisine = create(:cuisine, name:'Italian')

@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite, :mine]
-  before_action :type_cuisines, only: [:create, :show, :mine, :allrecipes, :new, :favorites]
+  before_action :type_cuisines, only: [:create, :show, :new]
 
   def star
     @recipe = Recipe.find(params[:id])
@@ -42,9 +42,8 @@ class RecipesController < ApplicationController
 
   def favorites
     @recipes = current_user.favorite_recipes
-    vet = Favorite.group(:recipe).count
-    @morefavoriteds = vet.max_by(3) { |i| i[1]}
-    render 'home/index'
+    @page_title = 'Meus Favoritos'
+    take_data
   end
 
   def show
@@ -53,7 +52,7 @@ class RecipesController < ApplicationController
 
   def allrecipes
     @recipes = Recipe.all
-    render 'home/index'
+    take_data
   end
 
   def new
@@ -62,7 +61,9 @@ class RecipesController < ApplicationController
 
   def mine
     @recipes = Recipe.where(user: current_user)
-    render 'home/index'
+    @page_title = "Minhas Receitas"
+    @not_found_message = "Você ainda não cadastrou nenhuma receita."
+    take_data
   end
 
   def destroy
@@ -109,8 +110,11 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @word = params[:word]
-    @recipes = Recipe.where("title = '#{@word}'")
+    word = params[:word]
+    @recipes = Recipe.where("title = '#{word}'")
+    @page_title = "Resultado da busca por: #{word}"
+    @not_found_message = 'Nenhuma receita encontrada'
+    take_data
   end
 
   def unfavorite

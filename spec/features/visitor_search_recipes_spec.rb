@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Visitor search for recipes' do
   scenario 'from home page' do
     # cria os dados necessários previamente
-    
+
 	  recipe = create(:recipe)
     another_recipe= create(:recipe)
     # simula a ação do usuário
@@ -22,17 +22,24 @@ feature 'Visitor search for recipes' do
   end
 
   scenario 'and navigate to recipe details' do
-    # cria os dados necessários previamente
-	  recipe = create(:recipe) 
+	  recipe = create(:recipe)
 
-    # simula a ação do usuário
     visit root_path
     fill_in 'Busca', with: recipe.title
     click_on 'Buscar'
     click_on recipe.title
 
-    # expectativas do usuário após a ação
     expect(current_path).to eq(recipe_path(recipe))
   end
-end
 
+  scenario 'from home page' do
+	  recipe = create(:recipe, title: 'Pizza')
+    another_recipe= create(:recipe)
+
+    visit root_path
+    fill_in 'Busca', with: 'Lasanha'
+    click_on 'Buscar'
+
+    expect(page).to have_content('Nenhuma receita encontrada')
+  end
+end

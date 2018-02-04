@@ -13,7 +13,7 @@
     </div>
   <% end %>
   <section class="col-sm-7 text-center list-recipes">
-    <h1>Receitas</h1>
+    <h1><%= @page_title %></h1>
     <%if @recipes && !@recipes.empty?%>
       <% @recipes.reverse_each do |recipe|%>
         <section class="show-recipe">
@@ -39,7 +39,7 @@
       <%=link_to 'Ver todas as receitas', allrecipes_recipes_path%>
     <%end%>
     <%else%>
-      <p>Nenhuma Receita encontrada.</p>
+      <p><%= @not_found_message %></p>
     <%end%><!-- if @recipes-->
   </section>
 
