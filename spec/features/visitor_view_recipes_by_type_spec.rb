@@ -61,6 +61,6 @@ feature 'Visitor view recipes by type' do
 
     # expectativas do usuário após a ação
     expect(page).not_to have_content(recipe.title)
-    expect(page).to have_content('Nenhuma receita encontrada para este tipo de receitas')
+    expect(page).to have_content('Nenhuma receita encontrada para este tipo de receita')
   end
 end

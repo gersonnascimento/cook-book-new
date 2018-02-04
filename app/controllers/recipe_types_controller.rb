@@ -5,7 +5,7 @@ class RecipeTypesController < ApplicationController
     @type = RecipeType.find(params[:id])
     @recipes = Recipe.where(recipe_type: @type)
     @page_title = @type.name
-    @not_found_message = 'Nenhuma receita encontrada para este tipo de receitas'
+    @not_found_message = 'Nenhuma receita encontrada para este tipo de receita'
     take_more_favorites
   end
 
