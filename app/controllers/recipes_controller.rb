@@ -112,7 +112,7 @@ class RecipesController < ApplicationController
   def search
     word = params[:word]
     @recipes = Recipe.where("title = '#{word}'")
-    @page_title = "Resultado da busca por: #{word}"
+    @page_title = "Resultado da busca por: \"#{word}\""
     @not_found_message = 'Nenhuma receita encontrada'
     take_data
   end
