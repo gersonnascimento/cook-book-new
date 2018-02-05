@@ -40,7 +40,7 @@ feature 'User star recipe' do
 
     login_as user
     visit recipe_path(recipe)
-    click_on  'Star'
+    click_on 'Star'
     click_on 'Unstar'
 
     expect(page).to have_content('Marcação removida com sucesso!')
@@ -49,7 +49,7 @@ feature 'User star recipe' do
   end
   scenario 'user can not star other owners recipe' do
     user = create(:user)
-    user2 = create(:user, email:'teste2@teste.com.br')
+    user2 = create(:user, email: 'teste2@teste.com.br')
     recipe = create(:recipe, user: user)
 
     login_as user2

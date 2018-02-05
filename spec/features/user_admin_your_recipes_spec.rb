@@ -5,7 +5,10 @@ feature 'user admin your recipes' do
     create_user
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Principal')
-    recipe = Recipe.create(title: 'Bolo de banana', difficulty: 'facil', cook_time: 5, ingredients: 'banana', method: 'cozinha tudo', cuisine: cuisine, recipe_type: recipe_type, user_id: 1)
+    recipe = Recipe.create(title: 'Bolo de banana', difficulty: 'facil',
+                           cook_time: 5, ingredients: 'banana',
+                           method: 'cozinha tudo', cuisine: cuisine,
+                           recipe_type: recipe_type, user_id: 1)
     create_another_user
     visit recipe_path(recipe)
 
@@ -16,7 +19,10 @@ feature 'user admin your recipes' do
     create_user
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Principal')
-    recipe = Recipe.create(title: 'Bolo de banana', difficulty: 'facil', cook_time: 5, ingredients: 'banana', method: 'cozinha tudo', cuisine: cuisine, recipe_type: recipe_type, user_id: 1)
+    recipe = Recipe.create(title: 'Bolo de banana', difficulty: 'facil',
+                           cook_time: 5, ingredients: 'banana',
+                           method: 'cozinha tudo', cuisine: cuisine,
+                           recipe_type: recipe_type, user_id: 1)
     create_another_user
     visit edit_recipe_path(recipe)
 

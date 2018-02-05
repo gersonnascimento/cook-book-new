@@ -2,13 +2,11 @@ require 'rails_helper'
 
 feature 'Visitor register recipe' do
   scenario 'successfully' do
-    #cria os dados necessários
     create_user
     Cuisine.create(name: 'Arabe')
     RecipeType.create(name: 'Entrada')
     RecipeType.create(name: 'Prato Principal')
     RecipeType.create(name: 'Sobremesa')
-    # simula a ação do usuário
     visit root_path
     click_on 'Adicionar'
 
@@ -17,28 +15,25 @@ feature 'Visitor register recipe' do
     select 'Entrada', from: 'Tipo da Receita'
     fill_in 'Dificuldade', with: 'Fácil'
     fill_in 'Tempo de Preparo', with: '45'
-    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
-    fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate'
+    fill_in 'Como Preparar', with: 'Misturar tudo e servir.'
     click_on 'Enviar'
-
 
     expect(page).to have_css('h1', text: 'Tabule')
     expect(page).to have_css('h3', text: 'Detalhes')
     expect(page).to have_css('p', text: 'Entrada')
     expect(page).to have_css('p', text: 'Arabe')
     expect(page).to have_css('p', text: 'Fácil')
-    expect(page).to have_css('p', text: "45 minutos")
+    expect(page).to have_css('p', text: '45 minutos')
     expect(page).to have_css('h3', text: 'Ingredientes')
-    expect(page).to have_css('p', text: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha')
+    expect(page).to have_css('p', text: 'Trigo para quibe, cebola, tomate')
     expect(page).to have_css('h3', text: 'Como Preparar')
-    expect(page).to have_css('p', text:  'Misturar tudo e servir. Adicione limão a gosto.')
+    expect(page).to have_css('p', text:  'Misturar tudo e servir.')
   end
 
   scenario 'and must fill in all fields' do
-    #cria os dados necessários, nesse caso não vamos criar dados no banco
     create_user
     Cuisine.create(name: 'Arabe')
-    # simula a ação do usuário
     visit root_path
     click_on 'Adicionar'
 
@@ -49,17 +44,15 @@ feature 'Visitor register recipe' do
     fill_in 'Como Preparar', with: ''
     click_on 'Enviar'
 
-
     expect(page).to have_content('Não foi possível criar sua receita')
   end
   scenario 'recipe have author' do
-
     create_user
     Cuisine.create(name: 'Arabe')
     RecipeType.create(name: 'Entrada')
     RecipeType.create(name: 'Prato Principal')
     RecipeType.create(name: 'Sobremesa')
-    # simula a ação do usuário
+
     visit root_path
     click_on 'Adicionar'
 
@@ -68,11 +61,11 @@ feature 'Visitor register recipe' do
     select 'Entrada', from: 'Tipo da Receita'
     fill_in 'Dificuldade', with: 'Fácil'
     fill_in 'Tempo de Preparo', with: '45'
-    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
-    fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado'
+    fill_in 'Como Preparar', with: 'Misturar tudo e servir.'
     click_on 'Enviar'
 
-    expect(page).to have_css('h1', text:"Tabule")
+    expect(page).to have_css('h1', text: 'Tabule')
     expect(page).to have_content('(teste@teste.com.br)')
     expect(page).not_to have_content('Título')
   end
@@ -88,12 +81,12 @@ feature 'Visitor register recipe' do
     select recipe_type.name, from: 'Tipo da Receita'
     fill_in 'Dificuldade', with: 'Fácil'
     fill_in 'Tempo de Preparo', with: 'Quarenta e cinco'
-    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
-    fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado'
+    fill_in 'Como Preparar', with: 'Misturar tudo e servir.'
     click_on 'Enviar'
-    
-    expect(page).to have_content("Não foi possível criar sua receita")
-    expect(page).to have_content("Tempo de Preparo não é um número")
+
+    expect(page).to have_content('Não foi possível criar sua receita')
+    expect(page).to have_content('Tempo de Preparo não é um número')
   end
 
   scenario 'recipe have picture' do
@@ -109,7 +102,7 @@ feature 'Visitor register recipe' do
     create_user
     Cuisine.create(name: 'Arabe')
     RecipeType.create(name: 'Entrada')
-    # simula a ação do usuário
+
     visit root_path
     click_on 'Adicionar'
 
@@ -118,19 +111,18 @@ feature 'Visitor register recipe' do
     select 'Entrada', from: 'Tipo da Receita'
     fill_in 'Dificuldade', with: 'Fácil'
     fill_in 'Tempo de Preparo', with: '45'
-    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
-    fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado'
+    fill_in 'Como Preparar', with: 'Misturar tudo e servir.'
     page.attach_file('Imagem', './spec/support/fixtures/imagemteste.png')
     click_on 'Enviar'
 
     expect(page).to have_css("img[src*='imagemteste.png']")
   end
-
 end
 def create_user
   visit new_user_registration_path
   fill_in 'Email', with: 'teste@teste.com.br'
   fill_in 'Senha', with: '123456'
   fill_in 'Confirmação da senha', with: '123456'
-  click_on 'Finalizar Cadastro' 
+  click_on 'Finalizar Cadastro'
 end

@@ -2,17 +2,14 @@ require 'rails_helper'
 
 feature 'Visitor search for recipes' do
   scenario 'from home page' do
-    # cria os dados necessários previamente
-
-	  recipe = create(:recipe)
-    another_recipe= create(:recipe)
-    # simula a ação do usuário
+    recipe = create(:recipe)
+    another_recipe = create(:recipe)
     visit root_path
     fill_in 'Busca', with: recipe.title
     click_on 'Buscar'
 
-    # expectativas do usuário após a ação
-    expect(page).to have_css('h1', text: "Resultado da busca por: #{recipe.title}")
+    expect(page).to have_css('h1',
+                             text: "Resultado da busca por: #{recipe.title}")
     expect(page).to have_css('h1', text: recipe.title)
     expect(page).to have_css('li', text: recipe.recipe_type.name)
     expect(page).to have_css('li', text: recipe.cuisine.name)
@@ -22,7 +19,7 @@ feature 'Visitor search for recipes' do
   end
 
   scenario 'and navigate to recipe details' do
-	  recipe = create(:recipe)
+    recipe = create(:recipe)
 
     visit root_path
     fill_in 'Busca', with: recipe.title
@@ -33,8 +30,7 @@ feature 'Visitor search for recipes' do
   end
 
   scenario 'from home page' do
-	  recipe = create(:recipe, title: 'Pizza')
-    another_recipe= create(:recipe)
+    create(:recipe, title: 'Pizza')
 
     visit root_path
     fill_in 'Busca', with: 'Lasanha'

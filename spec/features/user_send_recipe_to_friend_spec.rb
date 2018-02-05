@@ -10,12 +10,14 @@ feature 'User send recipe to friend' do
     fill_in 'E-mail', with: 'teste@teste.com.br'
     fill_in 'Mensagem', with: 'conteudo'
 
-    expect(RecipesMailer).to receive(:share).with('teste@teste.com.br', 'conteudo', recipe.id).and_call_original
+    expect(RecipesMailer).to receive(:share).with('teste@teste.com.br',
+                                                  'conteudo',
+                                                  recipe.id).and_call_original
 
     click_on 'Compartilhar'
 
     expect(page).to have_content 'Enviada com sucesso'
-    expect(current_path).to eq recipe_path(recipe) 
+    expect(current_path).to eq recipe_path(recipe)
   end
   scenario 'successfully too' do
     user = create(:user)
@@ -33,6 +35,5 @@ feature 'User send recipe to friend' do
     expect(mail.subject).to eq 'Compartilharam uma receita com você'
     expect(mail.body).to include 'conteudo'
     expect(mail.body).to include recipe_url(recipe, host: 'localhost:3000')
-    
   end
 end
